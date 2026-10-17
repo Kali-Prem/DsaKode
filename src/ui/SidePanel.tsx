@@ -369,7 +369,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                     activeId={activeTab}
                     onChange={(id) => setActiveTab(id as any)}
                     tabs={[
-                      { id: 'guided', label: language === 'en' ? 'Ladder' : 'Guided Ladder', icon: <Layers className="w-3.5 h-3.5" />, badge: '8 steps' },
+                      { id: 'guided', label: language === 'en' ? 'Ladder' : 'Guided Ladder', icon: <Layers className="w-3.5 h-3.5" /> },
                       { id: 'insights', label: 'Insights', icon: <Sparkles className="w-3.5 h-3.5" /> },
                       { id: 'ask-coach', label: 'Ask Coach', icon: <Bot className="w-3.5 h-3.5" />, badge: 'AI' },
                     ]}

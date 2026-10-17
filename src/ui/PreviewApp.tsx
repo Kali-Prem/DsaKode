@@ -200,7 +200,7 @@ export const PreviewApp: React.FC = () => {
               activeId={tab}
               onChange={setTab}
               tabs={[
-                { id: 'ladder', label: 'Thinking Ladder', icon: <Layers className="w-3.5 h-3.5" />, badge: '8 steps' },
+                { id: 'ladder', label: 'Thinking Ladder', icon: <Layers className="w-3.5 h-3.5" /> },
                 { id: 'intuition', label: 'Waste Tool', icon: <Sparkles className="w-3.5 h-3.5" /> },
                 { id: 'edge', label: 'Edge Cases', icon: <ShieldAlert className="w-3.5 h-3.5" />, badge: '9' },
               ]}
