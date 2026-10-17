@@ -115,7 +115,7 @@ export const FloatingButton: React.FC<FloatingButtonProps> = ({
                 e.stopPropagation();
                 onLanguageChange(language === 'en' ? 'hi' : 'en');
               }}
-              title={language === 'en' ? 'Click to switch to Hindi (हिंदी)' : 'Click to switch to English'}
+              title={language === 'en' ? 'Click to switch to Hinglish' : 'Click to switch to English'}
               className="absolute -bottom-1 -left-1 flex items-center justify-center px-1.5 py-0.5 rounded-full text-[9px] font-black font-mono tracking-wider bg-slate-900 text-indigo-300 dark:bg-slate-800 dark:text-indigo-300 shadow border border-indigo-500/40 hover:bg-indigo-600 hover:text-white transition-all cursor-pointer"
             >
               {language === 'en' ? 'EN' : 'HI'}

@@ -190,7 +190,7 @@ export const GuidedWizard: React.FC<GuidedWizardProps> = ({
       <div className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-white/[0.08] text-xs">
         <span className="text-slate-600 dark:text-slate-300 font-medium flex items-center gap-1.5 text-xs">
           <Languages className="w-3.5 h-3.5 text-indigo-500" />
-          <span>{language === 'en' ? 'Language / भाषा:' : 'Bhasha / Language:'}</span>
+          <span>Language:</span>
         </span>
         <div className="inline-flex items-center rounded-lg bg-slate-200 dark:bg-slate-950 p-0.5 border border-slate-300 dark:border-slate-800 text-xs">
           <button
@@ -213,7 +213,7 @@ export const GuidedWizard: React.FC<GuidedWizardProps> = ({
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            Hinglish (हिंदी)
+            Hinglish
           </button>
         </div>
       </div>

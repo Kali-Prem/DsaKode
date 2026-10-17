@@ -84,7 +84,7 @@ describe('i18n and Language Switching Support', () => {
   it('allows changing language from Options page', async () => {
     const { findByText, getByText } = render(<Options />);
 
-    expect(await findByText('Extension Language / भाषा')).toBeDefined();
+    expect(await findByText('Extension Language')).toBeDefined();
     const enButton = getByText('English');
     fireEvent.click(enButton);
 

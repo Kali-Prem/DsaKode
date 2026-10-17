@@ -266,7 +266,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                 {/* Language Toggle: EN / HI Segmented Pill */}
                 <div
                   className="inline-flex items-center rounded-lg bg-slate-100 dark:bg-slate-800 p-0.5 border border-slate-300/80 dark:border-white/[0.1] text-xs shadow-sm"
-                  title="Switch Language / भाषा बदलें (EN = English, HI = Hinglish)"
+                  title="Switch Language (EN = English, HI = Hinglish)"
                 >
                   <button
                     type="button"
@@ -283,7 +283,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                   <button
                     type="button"
                     onClick={() => onLanguageChange && onLanguageChange('hi')}
-                    aria-label="Switch to Hindi / Hinglish"
+                    aria-label="Switch to Hinglish"
                     className={`px-2 py-0.5 rounded-md text-[11px] font-black transition-all ${
                       language === 'hi'
                         ? 'bg-indigo-600 text-white shadow-sm'

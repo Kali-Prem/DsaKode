@@ -612,16 +612,16 @@ export const Options: React.FC = () => {
               {/* Language Selection Option */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-800/60">
                 <div>
-                  <h4 className="text-sm font-semibold text-slate-200">Extension Language / भाषा</h4>
+                  <h4 className="text-sm font-semibold text-slate-200">Extension Language</h4>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    Choose between English and Hinglish (हिंदी) for Socratic ladder steps, hints, and explanations.
+                    Choose between English and Hinglish for Socratic ladder steps, hints, and explanations.
                   </p>
                 </div>
 
                 <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-950 border border-slate-800">
                   {[
                     { id: 'en', label: 'English' },
-                    { id: 'hi', label: 'Hinglish (हिंदी)' },
+                    { id: 'hi', label: 'Hinglish' },
                   ].map((l) => (
                     <button
                       key={l.id}

@@ -138,7 +138,7 @@ Want interactive conversational guidance while coding? DsaKode includes a dedica
 
 ---
 
-### 🌐 5. Bilingual Support (English & Hinglish / हिंदी)
+### 🌐 5. Bilingual Support (English & Hinglish)
 
 - **Instant Language Toggle**: Switch between **English** and **Hinglish** at any time with a single click in the SidePanel header `[EN / HI]` or Popup header.
 - **Full Localization**:

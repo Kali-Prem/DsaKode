@@ -127,7 +127,7 @@ export const Popup: React.FC = () => {
           <button
             type="button"
             onClick={handleToggleLanguage}
-            title={lang === 'hi' ? 'Switch to English (अंग्रेज़ी में बदलें)' : 'Switch to Hinglish (हिंग्लिश में बदलें)'}
+            title={lang === 'hi' ? 'Switch to English' : 'Switch to Hinglish'}
             className="flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 text-slate-200 text-xs font-semibold transition-all shadow-sm"
           >
             <Languages className="w-3.5 h-3.5 text-indigo-400" />
@@ -148,7 +148,7 @@ export const Popup: React.FC = () => {
       <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-slate-900/90 border border-indigo-500/30 text-xs shadow-sm">
         <span className="text-slate-300 flex items-center gap-1.5 font-medium">
           <Languages className="w-3.5 h-3.5 text-indigo-400" />
-          <span>Language / भाषा:</span>
+          <span>Language:</span>
         </span>
         <div className="inline-flex items-center rounded-lg bg-slate-950 p-0.5 border border-slate-800 text-xs">
           <button
@@ -171,7 +171,7 @@ export const Popup: React.FC = () => {
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            Hinglish (हिंदी)
+            Hinglish
           </button>
         </div>
       </div>
