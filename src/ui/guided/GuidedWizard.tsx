@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Trophy, RotateCcw, Check, ArrowRight, BookOpen } from 'lucide-react';
+import { Trophy, RotateCcw, Check, ArrowRight, BookOpen, Languages } from 'lucide-react';
 import {
   ParsedProblem,
   CoachAnalysis,
@@ -24,6 +24,7 @@ export interface GuidedWizardProps {
   problem: ParsedProblem;
   analysis: CoachAnalysis;
   language?: Language;
+  onLanguageChange?: (lang: Language) => void;
   onProgressChange?: (completedCount: number) => void;
   className?: string;
 }
@@ -32,6 +33,7 @@ export const GuidedWizard: React.FC<GuidedWizardProps> = ({
   problem,
   analysis,
   language = 'hi',
+  onLanguageChange,
   onProgressChange,
   className = '',
 }) => {
@@ -183,6 +185,38 @@ export const GuidedWizard: React.FC<GuidedWizardProps> = ({
         completedSteps={guidedState.completedSteps}
         onSelectStep={handleSelectStep}
       />
+
+      {/* Language Quick Switch Bar */}
+      <div className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-white/[0.08] text-xs">
+        <span className="text-slate-600 dark:text-slate-300 font-medium flex items-center gap-1.5 text-xs">
+          <Languages className="w-3.5 h-3.5 text-indigo-500" />
+          <span>{language === 'en' ? 'Language / भाषा:' : 'Bhasha / Language:'}</span>
+        </span>
+        <div className="inline-flex items-center rounded-lg bg-slate-200 dark:bg-slate-950 p-0.5 border border-slate-300 dark:border-slate-800 text-xs">
+          <button
+            type="button"
+            onClick={() => onLanguageChange && onLanguageChange('en')}
+            className={`px-2.5 py-0.5 rounded-md text-xs font-bold transition-all ${
+              language === 'en'
+                ? 'bg-indigo-600 text-white shadow-sm'
+                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            English
+          </button>
+          <button
+            type="button"
+            onClick={() => onLanguageChange && onLanguageChange('hi')}
+            className={`px-2.5 py-0.5 rounded-md text-xs font-bold transition-all ${
+              language === 'hi'
+                ? 'bg-indigo-600 text-white shadow-sm'
+                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            Hinglish (हिंदी)
+          </button>
+        </div>
+      </div>
 
       {/* Celebration Screen when 8/8 finished */}
       {isCompletedAll ? (

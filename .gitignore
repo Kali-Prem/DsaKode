@@ -4,7 +4,6 @@ node_modules/
 # Production & test outputs
 dist/
 coverage/
-extension.zip
 
 # Environment & logs
 *.log

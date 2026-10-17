@@ -49,6 +49,10 @@ export const Popup: React.FC = () => {
   const handleToggleLanguage = async () => {
     const currentLang = state?.language || state?.settings?.language || 'hi';
     const nextLang: Language = currentLang === 'hi' ? 'en' : 'hi';
+    await handleSetLanguage(nextLang);
+  };
+
+  const handleSetLanguage = async (nextLang: Language) => {
     const nextState = await setStorageState((prev) => ({
       ...prev,
       language: nextLang,
@@ -137,6 +141,38 @@ export const Popup: React.FC = () => {
             <Flame className="w-4 h-4 text-amber-500 fill-amber-500/40" />
             <span>{streak} day{streak === 1 ? '' : 's'}</span>
           </div>
+        </div>
+      </div>
+
+      {/* Quick Language Switcher Bar */}
+      <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-slate-900/90 border border-indigo-500/30 text-xs shadow-sm">
+        <span className="text-slate-300 flex items-center gap-1.5 font-medium">
+          <Languages className="w-3.5 h-3.5 text-indigo-400" />
+          <span>Language / भाषा:</span>
+        </span>
+        <div className="inline-flex items-center rounded-lg bg-slate-950 p-0.5 border border-slate-800 text-xs">
+          <button
+            type="button"
+            onClick={() => handleSetLanguage('en')}
+            className={`px-2.5 py-1 rounded-md text-xs font-bold transition-all ${
+              lang === 'en'
+                ? 'bg-indigo-600 text-white shadow-sm'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            English
+          </button>
+          <button
+            type="button"
+            onClick={() => handleSetLanguage('hi')}
+            className={`px-2.5 py-1 rounded-md text-xs font-bold transition-all ${
+              lang === 'hi'
+                ? 'bg-indigo-600 text-white shadow-sm'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            Hinglish (हिंदी)
+          </button>
         </div>
       </div>
 

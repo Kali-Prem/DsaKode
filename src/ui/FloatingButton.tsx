@@ -9,6 +9,8 @@ export interface FloatingButtonProps {
   progressStep?: number; // e.g. 0 to 8
   totalSteps?: number;
   dockSide?: 'left' | 'right';
+  language?: 'en' | 'hi';
+  onLanguageChange?: (lang: 'en' | 'hi') => void;
   className?: string;
 }
 
@@ -18,6 +20,8 @@ export const FloatingButton: React.FC<FloatingButtonProps> = ({
   progressStep = 2,
   totalSteps = 8,
   dockSide = 'right',
+  language = 'hi',
+  onLanguageChange,
   className = '',
 }) => {
   const shouldReduceMotion = useReducedMotion();
@@ -101,6 +105,20 @@ export const FloatingButton: React.FC<FloatingButtonProps> = ({
           {progressStep > 0 && !isOpen && (
             <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-xs font-bold font-mono bg-indigo-600 text-white shadow-sm border border-white dark:border-slate-900">
               {progressStep}
+            </span>
+          )}
+
+          {/* Mini Language Indicator / Toggle Badge */}
+          {!isOpen && onLanguageChange && (
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                onLanguageChange(language === 'en' ? 'hi' : 'en');
+              }}
+              title={language === 'en' ? 'Click to switch to Hindi (हिंदी)' : 'Click to switch to English'}
+              className="absolute -bottom-1 -left-1 flex items-center justify-center px-1.5 py-0.5 rounded-full text-[9px] font-black font-mono tracking-wider bg-slate-900 text-indigo-300 dark:bg-slate-800 dark:text-indigo-300 shadow border border-indigo-500/40 hover:bg-indigo-600 hover:text-white transition-all cursor-pointer"
+            >
+              {language === 'en' ? 'EN' : 'HI'}
             </span>
           )}
         </button>

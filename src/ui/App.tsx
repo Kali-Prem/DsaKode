@@ -280,6 +280,8 @@ export const App: React.FC = () => {
         progressStep={progressStep}
         totalSteps={8}
         dockSide={dockSide}
+        language={language}
+        onLanguageChange={handleLanguageChange}
       />
     </div>
   );

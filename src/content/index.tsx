@@ -7,7 +7,16 @@ const HOST_ID = 'dsa-thinking-coach-host';
 
 function mountDSAThinkingCoach() {
   // Prevent duplicate mounts
-  if (document.getElementById(HOST_ID)) {
+  if (typeof document === 'undefined' || document.getElementById(HOST_ID)) {
+    return;
+  }
+
+  if (!document.body) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mountDSAThinkingCoach);
+    } else {
+      setTimeout(mountDSAThinkingCoach, 50);
+    }
     return;
   }
 
@@ -47,8 +56,24 @@ function mountDSAThinkingCoach() {
   );
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', mountDSAThinkingCoach);
-} else {
-  mountDSAThinkingCoach();
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mountDSAThinkingCoach);
+  } else {
+    mountDSAThinkingCoach();
+  }
+
+  // Fallback observer: if LeetCode rebuilds body or mounts late
+  try {
+    const observer = new MutationObserver(() => {
+      if (document.body && !document.getElementById(HOST_ID)) {
+        mountDSAThinkingCoach();
+      }
+    });
+    if (document.documentElement) {
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    }
+  } catch {
+    // Ignore observer failure in non-standard environments
+  }
 }

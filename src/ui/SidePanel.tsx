@@ -263,21 +263,36 @@ export const SidePanel: React.FC<SidePanelProps> = ({
 
               {/* Action Buttons */}
               <div className="flex items-center gap-1 shrink-0">
-                {/* Language Toggle: EN / HI */}
-                <Tooltip
-                  content={language === 'en' ? 'Switch to Hindi (हिंदी)' : 'Switch to English (Change to English)'}
-                  position="bottom"
+                {/* Language Toggle: EN / HI Segmented Pill */}
+                <div
+                  className="inline-flex items-center rounded-lg bg-slate-100 dark:bg-slate-800 p-0.5 border border-slate-300/80 dark:border-white/[0.1] text-xs shadow-sm"
+                  title="Switch Language / भाषा बदलें (EN = English, HI = Hinglish)"
                 >
                   <button
                     type="button"
-                    onClick={() => onLanguageChange && onLanguageChange(language === 'en' ? 'hi' : 'en')}
-                    aria-label="Toggle Language"
-                    className="h-7 px-2 flex items-center gap-1 rounded-md text-xs font-bold transition-all bg-indigo-50 hover:bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:hover:bg-indigo-500/30 dark:text-indigo-300 border border-indigo-200/80 dark:border-indigo-500/30"
+                    onClick={() => onLanguageChange && onLanguageChange('en')}
+                    aria-label="Switch to English"
+                    className={`px-2 py-0.5 rounded-md text-[11px] font-black transition-all ${
+                      language === 'en'
+                        ? 'bg-indigo-600 text-white shadow-sm'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    }`}
                   >
-                    <Languages className="w-3.5 h-3.5" />
-                    <span className="text-[11px] font-black uppercase tracking-wider">{language === 'en' ? 'EN' : 'HI'}</span>
+                    EN
                   </button>
-                </Tooltip>
+                  <button
+                    type="button"
+                    onClick={() => onLanguageChange && onLanguageChange('hi')}
+                    aria-label="Switch to Hindi / Hinglish"
+                    className={`px-2 py-0.5 rounded-md text-[11px] font-black transition-all ${
+                      language === 'hi'
+                        ? 'bg-indigo-600 text-white shadow-sm'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    HI
+                  </button>
+                </div>
 
                 {/* Theme Mode Toggle */}
                 <Tooltip content={`Theme: ${themeMode} (click to cycle)`} position="bottom">
@@ -364,6 +379,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                        problem={effectiveProblem}
                        analysis={effectiveAnalysis}
                        language={language}
+                       onLanguageChange={onLanguageChange}
                        onProgressChange={onProgressChange}
                     />
                   )}
