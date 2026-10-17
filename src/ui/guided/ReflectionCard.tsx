@@ -98,20 +98,26 @@ export const ReflectionCard: React.FC<ReflectionCardProps> = ({
               ? '1. What was the core pattern of this problem? (Is problem ka core pattern kya tha?)'
               : '1. Is problem ka core pattern kya tha?'}
           </label>
-          <input
+          <textarea
             id="reflection-pattern"
-            type="text"
+            rows={2}
             value={pattern}
             onChange={(e) => {
               setPattern(e.target.value);
               setIsSaved(false);
+            }}
+            onKeyDown={(e) => {
+              if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                handleSave(e);
+              }
             }}
             placeholder={
               language === 'en'
                 ? 'e.g., HashMap complement lookup, Two Pointers sorted range, Sliding Window...'
                 : 'Jaise: HashMap complement lookup, Two Pointers sorted range, Sliding Window...'
             }
-            className="w-full text-sm px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans placeholder:text-slate-400"
+            className="w-full text-xs sm:text-sm px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans placeholder:text-slate-400 resize-y min-h-[56px] leading-relaxed overflow-y-auto dsa-scrollbar select-text"
           />
         </div>
 
@@ -126,20 +132,26 @@ export const ReflectionCard: React.FC<ReflectionCardProps> = ({
               ? '2. Which keyword or observation triggered intuition? (Kis keyword ya observation se intuition click hua?)'
               : '2. Kis keyword ya observation se intuition click hua?'}
           </label>
-          <input
+          <textarea
             id="reflection-trigger"
-            type="text"
+            rows={2}
             value={triggerObservation}
             onChange={(e) => {
               setTriggerObservation(e.target.value);
               setIsSaved(false);
+            }}
+            onKeyDown={(e) => {
+              if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                handleSave(e);
+              }
             }}
             placeholder={
               language === 'en'
                 ? "e.g., 'Array is unsorted but target sum needed', 'Contiguous range constraint'..."
                 : "Jaise: 'Array unsorted hai par target sum nikalna hai', 'Contiguous range constraint'..."
             }
-            className="w-full text-sm px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans placeholder:text-slate-400"
+            className="w-full text-xs sm:text-sm px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans placeholder:text-slate-400 resize-y min-h-[56px] leading-relaxed overflow-y-auto dsa-scrollbar select-text"
           />
         </div>
 
@@ -154,20 +166,26 @@ export const ReflectionCard: React.FC<ReflectionCardProps> = ({
               ? '3. What was the waste in brute force & which tool eliminated it? (Brute force me waste kya tha aur kis tool ne hataya?)'
               : '3. Brute force me waste kya tha aur kis tool ne hataya?'}
           </label>
-          <input
+          <textarea
             id="reflection-waste"
-            type="text"
+            rows={2}
             value={wasteAndTool}
             onChange={(e) => {
               setWasteAndTool(e.target.value);
               setIsSaved(false);
+            }}
+            onKeyDown={(e) => {
+              if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                handleSave(e);
+              }
             }}
             placeholder={
               language === 'en'
                 ? "e.g., 'Linear search O(N) was replaced by HashMap O(1) instant lookup'..."
                 : "Jaise: 'Linear search O(n) ko HashMap O(1) lookup ne replace kiya'..."
             }
-            className="w-full text-sm px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans placeholder:text-slate-400"
+            className="w-full text-xs sm:text-sm px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans placeholder:text-slate-400 resize-y min-h-[56px] leading-relaxed overflow-y-auto dsa-scrollbar select-text"
           />
         </div>
 

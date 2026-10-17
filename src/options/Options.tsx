@@ -907,16 +907,16 @@ export const Options: React.FC = () => {
                             </span>
                           </div>
 
-                          <div className="space-y-1.5 pt-0.5 text-xs text-slate-300 leading-relaxed">
-                            <div>
+                          <div className="space-y-1.5 pt-0.5 text-xs text-slate-300 leading-relaxed break-words">
+                            <div className="whitespace-pre-wrap">
                               <strong className="text-indigo-400">1. Core Pattern: </strong>
                               {prob.reflection?.pattern}
                             </div>
-                            <div>
+                            <div className="whitespace-pre-wrap">
                               <strong className="text-amber-400">2. Trigger Observation: </strong>
                               {prob.reflection?.triggerObservation}
                             </div>
-                            <div>
+                            <div className="whitespace-pre-wrap">
                               <strong className="text-emerald-400">3. Waste & Tool: </strong>
                               {prob.reflection?.wasteAndTool}
                             </div>
