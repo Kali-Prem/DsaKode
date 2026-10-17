@@ -1,0 +1,209 @@
+[
+  {
+    "id": "two-pointers-sorted",
+    "patterns": ["\\bsorted\\b", "two\\s*pointers?", "pair with (target|given) sum", "three sum", "3sum"],
+    "technique": "Sort + Two Pointers",
+    "why": "Jab array pehle se sorted (chote se bada) hota hai, to ek pointer shuru me aur ek aakhir me rakh kar hum bina dono nested loops ke O(n) me answer dhoondh sakte hain.",
+    "socraticQuestion": "Numbers line se lage hain. Agar dono ends se ek-ek kadam badhein, to sum kam ya zyada hone par pointers ko aage-peeche kaise karoge?",
+    "wasteRow": 2,
+    "confidence": "high"
+  },
+  {
+    "id": "rotated-binary-search",
+    "patterns": ["rotated\\s+sorted", "circularly\\s+sorted", "rotated\\s+array"],
+    "technique": "Modified Binary Search",
+    "why": "Rotated array ko beech (mid) se kaatne par hamesha kam se kam ek hissa poori tarah sorted hota hai.",
+    "socraticQuestion": "Mid number nikalne ke baad dekho: left wala hissa seedha hai ya right wala? Tumhara target kis hisse ke andar padta hai?",
+    "wasteRow": 4,
+    "confidence": "high"
+  },
+  {
+    "id": "sliding-window-contiguous",
+    "patterns": ["contiguous", "subarray", "substring", "longest\\s+substring", "minimum\\s+window", "at\\s+most\\s+k\\s+distinct"],
+    "technique": "Sliding Window",
+    "why": "Lagataar range (subarray) me aage badhne par purana number hat-ta hai aur naya judta hai, poora dabba dobara jodne ki zaroorat nahi hoti.",
+    "socraticQuestion": "Dabbe ko aage badha kar dekho: jab tak condition sahi hai right badhao, jaise hi galat ho left se dabba chhota karte jao.",
+    "wasteRow": 3,
+    "confidence": "high"
+  },
+  {
+    "id": "prefix-sum-hashmap",
+    "patterns": ["subarray\\s+sum\\s+(equals?|to)\\s+k", "sum\\s+equals?\\s+k", "divisible\\s+by\\s+k", "continuous\\s+subarray\\s+sum", "equal\\s+number\\s+of\\s+0\\s+and\\s+1"],
+    "technique": "Prefix Sum + HashMap",
+    "why": "Shuruat se ab tak ka kul jodd (prefix sum) yaad rakh kar hum kisi bhi beech ke tukde ka sum bina kisi loop ke O(1) me pata laga sakte hain.",
+    "socraticQuestion": "Abhi tak ka kul jodd agar 'curr' hai aur target 'k' chahiye, to kya pehle kabhi 'curr - k' dekha tha? HashMap se poocho!",
+    "wasteRow": 1,
+    "confidence": "high"
+  },
+  {
+    "id": "hashmap-frequency",
+    "patterns": ["frequency", "duplicate", "anagram", "distinct", "\\bunique\\b", "occurrence", "majority\\s+element", "two\\s*sum", "complement"],
+    "technique": "HashMap / HashSet",
+    "why": "Kisi number ko pehle dekha tha ya nahi, ye pata lagane ke liye HashMap sabse fast (1 step me) answer deta hai.",
+    "socraticQuestion": "Kaunsi aisi cheez hai jise baar-baar dhoondhna pad raha hai? Use ek register/map me likhte jao taaki agla number aate hi turant mil jaye!",
+    "wasteRow": 0,
+    "confidence": "high"
+  },
+  {
+    "id": "binary-search-answer",
+    "patterns": [
+      "minimi[sz]e\\s+the\\s+maximum",
+      "maximi[sz]e\\s+the\\s+minimum",
+      "minimum\\s+(speed|capacity|days|time|rate|eating\\s+speed)",
+      "koko\\s+eating\\s+bananas",
+      "within\\s+\\w+\\s+days",
+      "at\\s+most\\s+\\w+\\s+hours"
+    ],
+    "technique": "Binary Search on Answer Space",
+    "why": "Jab answer ki ek limit pata ho (jaise speed 1 se 100) aur kisi bhi speed ko test karna aasan ho, to Binary Search se har baar aadhi possibilities hat jati hain.",
+    "socraticQuestion": "Answer ki sabse choti aur sabse badi value kya ho sakti hai? Beech ka number pakad kar test karo: kya ye speed kaam karegi?",
+    "wasteRow": 4,
+    "confidence": "high"
+  },
+  {
+    "id": "binary-search-explicit",
+    "patterns": ["o\\(log\\s*n\\)", "logarithmic\\s+time", "search\\s+in\\s+(a\\s+)?sorted"],
+    "technique": "Binary Search",
+    "why": "Jab question O(log n) maange aur data sorted ho, to har step pe beech ka number check karke aadha hissa chhod diya jata hai.",
+    "socraticQuestion": "Beech ka number target se bada hai ya chhota? Ek jhatke me konsa aadha hissa reject kar sakte ho?",
+    "wasteRow": 4,
+    "confidence": "high"
+  },
+  {
+    "id": "monotonic-stack",
+    "patterns": ["next\\s+greater", "next\\s+smaller", "daily\\s+temperatures", "histogram", "stock\\s+span", "valid\\s+parenthes", "\\bstack\\b"],
+    "technique": "Monotonic Stack",
+    "why": "Jab aage aane wale number se pichhle pending numbers ka faisla hona ho (jaise agla bada number kaunsa hai), to Stack sabse best hai.",
+    "socraticQuestion": "Jo numbers abhi solve nahi hue unhe ek dabbe (stack) me rakho. Naya number aate hi dekho ki ye pichhle kis-kis number se bada hai!",
+    "wasteRow": 6,
+    "confidence": "high"
+  },
+  {
+    "id": "heap-top-k",
+    "patterns": ["k\\s+(largest|smallest|most\\s+frequent|closest)", "kth\\s+(largest|smallest)", "top\\s+k", "median\\s+of\\s+data\\s+stream", "merge\\s+k\\s+sorted"],
+    "technique": "Heap / PriorityQueue (Size K)",
+    "why": "Poora array sort karne ki jagah ek chhota K-size ka Heap banao, jo hamesha sabse chhota ya sabse bada number upar rakhta hai.",
+    "socraticQuestion": "K largest numbers chahiye? K-size ka min-heap banao, jo naye number ko dekhega aur sabse chote number ko bahar nikaal dega!",
+    "wasteRow": 7,
+    "confidence": "high"
+  },
+  {
+    "id": "linked-list-pointers",
+    "patterns": ["linked\\s*list", "detect\\s+cycle", "middle\\s+of\\s+(the\\s+)?linked\\s+list", "reverse\\s+linked\\s+list", "dummy\\s+node"],
+    "technique": "Fast & Slow Pointers / Dummy Node",
+    "why": "Linked List me beech ka pata karne ya cycle pakadne ke liye ek fast (2 step) aur ek slow (1 step) pointer chalate hain.",
+    "socraticQuestion": "Agar loop (cycle) hai to fast pointer daudte hue slow pointer ko zaroor pakad lega! Aur head change hone se bachne ke liye Dummy node lagao.",
+    "wasteRow": null,
+    "confidence": "high"
+  },
+  {
+    "id": "tree-dfs-bfs",
+    "patterns": ["binary\\s+tree", "binary\\s+search\\s+tree", "\\bbst\\b", "root\\s+to\\s+leaf", "lowest\\s+common\\s+ancestor", "tree\\s+diameter"],
+    "technique": "Tree Traversal (DFS Recursion / BFS Level-Order)",
+    "why": "Tree ke har node ke paas left aur right bachhe hote hain. Recursion se har chote hisse ka answer maang kar jodte hain.",
+    "socraticQuestion": "Left bachhe aur right bachhe se kya answer chahiye? Agar node khali (null) ho jaye to kya return karoge?",
+    "wasteRow": null,
+    "confidence": "high"
+  },
+  {
+    "id": "graph-bfs-shortest",
+    "patterns": ["shortest\\s+path", "fewest\\s+(steps|moves)", "minimum\\s+(steps|moves)", "level\\s+order", "word\\s+ladder"],
+    "technique": "BFS (Breadth-First Search)",
+    "why": "Sabse kam kadam (shortest path) nikalne ke liye BFS best hai, kyunki ye pehle 1 kadam ki doori, fir 2, fir 3 kadam check karta hai.",
+    "socraticQuestion": "Ek Queue banao jisme shuruati point daalo. Har kadam par naye padosi check karo aur jo pehle dekh chuke ho unhe mark kar lo!",
+    "wasteRow": null,
+    "confidence": "high"
+  },
+  {
+    "id": "grid-traversal",
+    "patterns": ["\\bgrid\\b", "\\bmatrix\\b", "island", "islands", "flood\\s+fill", "surrounded\\s+regions", "number\\s+of\\s+islands"],
+    "technique": "2D Grid DFS / BFS (Visited Tracking)",
+    "why": "Grid (matrix) me har dabbe ke 4 padosi hote hain (upar, neeche, daayein, baayein). Har island ya path ko ek-ek karke ghoomte hain.",
+    "socraticQuestion": "Dhyan rakho ki dabbe se bahar na gir jao (boundary check), aur jis dabbe ko ghoom chuke ho uspar nishaan (visited) laga do!",
+    "wasteRow": null,
+    "confidence": "high"
+  },
+  {
+    "id": "topological-sort",
+    "patterns": ["course\\s+schedule", "prerequisite", "prerequisites", "topological", "dependency", "build\\s+order"],
+    "technique": "Topological Sort (Kahn's / Indegree Array)",
+    "why": "Courses ya tasks ko sahi order me karne ke liye pehle unhe karo jinka koi prerequisite nahi hai, fir unke aage walo ko kholo.",
+    "socraticQuestion": "Kaunsa course bina kisi pehle wale course ke kiya ja sakta hai? Use pehle khatam karke aage walo ke raaste kholo!",
+    "wasteRow": null,
+    "confidence": "high"
+  },
+  {
+    "id": "backtracking",
+    "patterns": ["all\\s+possible", "all\\s+subsets", "subsets", "permutations?", "combinations?", "generate\\s+all", "n-queens", "sudoku"],
+    "technique": "Backtracking (Choose -> Explore -> Undo)",
+    "why": "Saare possible combinations banane ke liye ek rasta chuno, aage explore karo, aur wapas aate waqt choice ko hata do (undo).",
+    "socraticQuestion": "Har mod par: kya-kya raste hain? Jab answer poora ban jaye to list me daalo, aur peeche aate waqt dabbe ko waisa hi saaf kar do!",
+    "wasteRow": null,
+    "confidence": "high"
+  },
+  {
+    "id": "dynamic-programming",
+    "patterns": [
+      "number\\s+of\\s+ways",
+      "distinct\\s+ways",
+      "minimum\\s+cost",
+      "maximum\\s+profit",
+      "minimum\\s+(number\\s+of\\s+)?coins",
+      "longest\\s+(common|increasing)\\s+subsequence",
+      "climbing\\s+stairs",
+      "coin\\s+change",
+      "knapsack",
+      "partition\\s+equal\\s+subset"
+    ],
+    "technique": "Dynamic Programming (Memoization / Tabulation)",
+    "why": "Jab wahi chhota question baar-baar saamne aaye, to har step ka answer ek table me save kar lo taaki dubara na calculate karna pade.",
+    "socraticQuestion": "dp[i] ka matlab aasan shabdon me kya hai? Pichhle step ke answer se agle step ka formula kaise banega?",
+    "wasteRow": 5,
+    "confidence": "high"
+  },
+  {
+    "id": "intervals-greedy",
+    "patterns": ["interval", "intervals", "meeting\\s+rooms?", "non-overlapping", "merge\\s+intervals?", "insert\\s+interval"],
+    "technique": "Sort by Start/End Time + Greedy",
+    "why": "Intervals (meetings/time) ko shuru ke time se sort kar lo, fir bas pichhle wale ke khatam hone ke time se compare karke merge kar do.",
+    "socraticQuestion": "Agar pehli meeting ke khatam hone se pehle doosri shuru ho gayi, to dono aapas me takra rahi hain! Unhe jod kar ek lambi meeting bana do.",
+    "wasteRow": 8,
+    "confidence": "high"
+  },
+  {
+    "id": "trie-prefix",
+    "patterns": ["\\btrie\\b", "prefix\\s+tree", "startswith", "autocomplete", "word\\s+search\\s+ii", "replace\\s+words"],
+    "technique": "Trie (Prefix Tree)",
+    "why": "Dictionary ke hazaron words me se kisi prefix (jaise 'app') se shuru hone wale words 1 second me dhoondhne ke liye Trie best hai.",
+    "socraticQuestion": "Har letter ke baad agle letter ka rasta banao (A se Z tak). Kahi par bhi word khatam ho to 'isEnd' flag true kar do!",
+    "wasteRow": null,
+    "confidence": "high"
+  },
+  {
+    "id": "bit-manipulation",
+    "patterns": ["single\\s+number", "number\\s+of\\s+1\\s+bits", "counting\\s+bits", "power\\s+of\\s+two", "bitwise", "\\bxor\\b"],
+    "technique": "Bit Manipulation (XOR / Bitmask)",
+    "why": "Binary bits aur XOR se bina extra memory ke aapas ke duplicates cancel ho jate hain (jaise x ^ x = 0).",
+    "socraticQuestion": "Agar do same numbers aapas me XOR ho kar 0 ban jate hain, to kya akela bacha hua number bina kisi array ya map ke nikal aayega?",
+    "wasteRow": null,
+    "confidence": "high"
+  },
+  {
+    "id": "dsu-union-find",
+    "patterns": ["connected\\s+components?", "number\\s+of\\s+provinces", "redundant\\s+connection", "union\\s*find", "\\bdsu\\b", "disjoint\\s+set"],
+    "technique": "Disjoint Set Union (DSU / Union-Find)",
+    "why": "Kaun kiske group me hai aur aapas me rasta hai ya nahi, ye DSU se turant pata chal jata hai.",
+    "socraticQuestion": "Naya connection jodne par dekho: kya dono pehle se hi ek hi group ke leader se jude hain? Agar haan, to cycle mil gayi!",
+    "wasteRow": null,
+    "confidence": "high"
+  },
+  {
+    "id": "design-combo",
+    "patterns": ["lru\\s*cache", "design\\s+a\\s+data\\s+structure", "insert\\s+delete\\s+getrandom", "data\\s+stream", "implement\\s+\\w+\\s+class"],
+    "technique": "Design Combo (HashMap + Doubly Linked List / Vector)",
+    "why": "Jab ek hi Data Structure se saare kaam fast na ho rahe hon, to do alag tools ko mila kar dono ki khasiyat use karte hain.",
+    "socraticQuestion": "Fast dhoondhne ke liye HashMap aur fast delete/move karne ke liye Doubly LinkedList — dono ko jodh kar kaise banaoge?",
+    "wasteRow": null,
+    "confidence": "high"
+  }
+]

@@ -1,0 +1,28 @@
+#dsa-coach-root, #dsa-coach-root * { box-sizing: border-box; font-family: -apple-system, "Segoe UI", Roboto, sans-serif; }
+#dsa-coach-fab { position: fixed; right: 16px; bottom: 16px; width: 48px; height: 48px; border-radius: 50%; border: none; background: #4f46e5; color: #fff; font-size: 22px; cursor: pointer; z-index: 2147483646; box-shadow: 0 4px 14px rgba(0,0,0,.35); }
+#dsa-coach-fab:hover { background: #4338ca; }
+#dsa-coach-panel { position: fixed; right: 16px; bottom: 76px; width: 400px; max-width: calc(100vw - 32px); height: 75vh; flex-direction: column; background: #1e1e2e; color: #e5e7eb; border: 1px solid #3b3b52; border-radius: 12px; z-index: 2147483646; box-shadow: 0 10px 30px rgba(0,0,0,.5); overflow: hidden; font-size: 13px; line-height: 1.45; }
+.dsc-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #4f46e5; color: #fff; }
+.dsc-title { font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dsc-x { background: transparent; border: none; color: #fff; font-size: 16px; cursor: pointer; }
+.dsc-body { padding: 8px 10px 14px; overflow-y: auto; flex: 1; }
+.dsc-sec { margin: 8px 0; border: 1px solid #3b3b52; border-radius: 8px; background: #26263a; }
+.dsc-sec > summary { cursor: pointer; padding: 8px 10px; font-weight: 600; list-style: none; }
+.dsc-sec[open] > summary { border-bottom: 1px solid #3b3b52; }
+.dsc-sec-body { padding: 8px 10px; }
+.dsc-sec ul { margin: 6px 0; padding-left: 18px; }
+.dsc-sec li { margin: 3px 0; }
+.dsc-note { margin: 6px 0; color: #c7c9d3; }
+.dsc-intro { color: #a5b4fc; font-style: italic; }
+.dsc-warn { color: #fbbf24; }
+.dsc-mono, .dsc-mono li { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+.dsc-callout { margin: 8px 0; padding: 8px 10px; background: #312e81; border-radius: 6px; word-break: break-word; }
+.dsc-flags { list-style: none; padding-left: 0 !important; }
+.dsc-btn { width: 100%; padding: 8px; margin: 6px 0; background: #4f46e5; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.dsc-btn:hover { background: #4338ca; }
+.dsc-hit { margin: 8px 0; padding: 8px 10px; background: #1f3a2e; border-left: 3px solid #34d399; border-radius: 4px; }
+.dsc-ask { margin-top: 4px; color: #fde68a; }
+.dsc-matrix .dsc-row { padding: 6px 8px; margin: 4px 0; border-radius: 4px; background: #2d2d44; font-size: 12px; }
+.dsc-matrix .dsc-hl { background: #1f3a2e; border-left: 3px solid #34d399; }
+.dsc-checks label { display: block; margin: 5px 0; cursor: pointer; }
+.dsc-checks input { margin-right: 4px; }

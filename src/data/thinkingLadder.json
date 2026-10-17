@@ -1,0 +1,58 @@
+[
+  {
+    "step": 1,
+    "title": "👁️ Step 1: Observe (Problem Samjho)",
+    "sawal": "Question aakhir mang kya raha hai? Kya tum ise aasan bhasha me 1 line me kisi ko samjha sakte ho?",
+    "action": "Question ko dhyan se dekho: Input me kya mila hai, aur Answer (Output) kis form me wapas mang raha hai.",
+    "trap": "Question bina poora padhe turant code likhne ki jaldi karna."
+  },
+  {
+    "step": 2,
+    "title": "✍️ Step 2: Manual Solve (Haath Se Solve Karo)",
+    "sawal": "Agar computer nahi hota aur tumhe pen-paper pe 4 numbers diye jaate, to tumhara dimag ise haath se kaise solve karta?",
+    "action": "Ek chhota 4-numbers ka example lo aur khud aam insaan ki tarah step-by-step calculate karke answer nikalo.",
+    "trap": "Pehle se koi formula ya code sochna — pehle basic simple tareeqe se socho."
+  },
+  {
+    "step": 3,
+    "title": "🏷️ Step 3: Naam Do (Variables & Loop)",
+    "sawal": "Paper pe solve karte waqt kaunsa kaam baar-baar hua? Aur pichhla konsa number dimag me yaad rakhna pada?",
+    "action": "Jo kaam baar-baar hua wo 'Loop' banega, aur jo information yaad rakhni padi wo 'Variable' banegi.",
+    "trap": "Bina soche 2-3 loop laga dena jisse variables ka matlab hi samajh na aaye."
+  },
+  {
+    "step": 4,
+    "title": "🔨 Step 4: Sabse Seedha Tareeka (Brute Force)",
+    "sawal": "Sabse simple aur seedha tareeka kya hai jisme saari possibilities check ho jayein? Kitna time lagega?",
+    "action": "Sabse basic approach ki time complexity socho (jaise O(n²)). Agar input bada hai to kya ye limit (10⁸ operations) cross karega?",
+    "trap": "Pehle hi attempt me sabse fast solution sochne ke chakkar me blank ho jana."
+  },
+  {
+    "step": 5,
+    "title": "🔍 Step 5: Faltu Kaam Dhoondo (Waste Bottleneck)",
+    "sawal": "Simple tareeqe me kaunsa kaam faltu me baar-baar ho raha hai jo pure code ko slow kar raha hai?",
+    "action": "Pata lagao: kya tum wahi search dobara kar rahe ho, ya wahi jodd (sum) baar-baar calculate kar rahe ho?",
+    "trap": "Bina ye samjhe ki purana code kahan slow tha, seedha koi naya algorithm lagane lagna."
+  },
+  {
+    "step": 6,
+    "title": "🧰 Step 6: Sahi Tool Chuno (Data Structure / Pattern)",
+    "sawal": "Us faltu kaam ko khatam karne ke liye sabse best Data Structure ya Technique kaunsi hai?",
+    "action": "Waste-Tool table se matching tool chuno: jaise baar-baar search ke liye HashMap, range sum ke liye Prefix Sum.",
+    "trap": "Andha-dhundh koi bhi Data Structure lagana jiska problem ke logic se koi lena-dena na ho."
+  },
+  {
+    "step": 7,
+    "title": "🧪 Step 7: Chhote Example Pe Check Karo (Dry Run)",
+    "sawal": "Naya tareeka kya mushkil cases pe bhi sahi chalega? (Jaise khali array, 1 number, ya negative numbers?)",
+    "action": "Paper pe ek chhota table banao aur 3-4 steps haath se chalakar check karo ki answer sahi aa raha hai ya nahi.",
+    "trap": "Bina dry-run kiye code submit kar dena aur Wrong Answer aane par panic hona."
+  },
+  {
+    "step": 8,
+    "title": "💻 Step 8: Ab Bina Dare Code Likho",
+    "sawal": "Logic crystal clear ho gaya? Ab line-by-line clean code likho aur boundaries check karo.",
+    "action": "Pehle base cases / safety check likho, phir main loop, aur end me result return karo.",
+    "trap": "Boundary index (jaise i < n ya left <= right) me galti karna ya array bounds se bahar nikal jana."
+  }
+]

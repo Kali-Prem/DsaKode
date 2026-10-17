@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Production & test outputs
+dist/
+coverage/
+extension.zip
+
+# Environment & logs
+*.log
+.DS_Store

@@ -1,0 +1,44 @@
+{
+  "name": "dsakode",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DsaKode - Think Logic. Crack Code. Manifest V3 Chrome extension for LeetCode problem solving intuition",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build:icons": "python3 scripts/generate_icons.py",
+    "build:pages": "vite build",
+    "build:content": "vite build --config vite.content.config.ts",
+    "build:background": "vite build --config vite.background.config.ts",
+    "build": "npm run build:icons && npm run build:pages && npm run build:content && npm run build:background",
+    "zip": "npm run build && node scripts/zip.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "framer-motion": "^14.3.0",
+    "lucide-react": "^0.475.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/chrome": "^0.0.280",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^2.1.8",
+    "autoprefixer": "^10.4.20",
+    "jsdom": "^25.0.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.0",
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "rowIndex": 0,
+    "waste": "Baar-baar shuru se dhoondhna: 'Kya ye number pehle dekha tha?'",
+    "tool": "HashMap / HashSet",
+    "gain": "O(n) -> O(1)",
+    "socraticQuestion": "Har number ke liye kya tum array ko shuru se end tak baar-baar dhoondh rahe ho? Agar pehle dekhi hui values ko ek table/map (HashMap) me save kar lo, to agla number aate hi turant 1 step me mil jayega!"
+  },
+  {
+    "rowIndex": 1,
+    "waste": "Har baar kisi range ka jodd (sum) shuru se dobara jodna",
+    "tool": "Prefix / Suffix Array",
+    "gain": "O(n) -> O(1)",
+    "socraticQuestion": "Subarray ka sum baar-baar jod rahe ho? Agar shuruat me hi har index tak ka kul jodd (prefix sum) likh lo, to kisi bhi range ka sum sirf ek subtraction (P[right] - P[left-1]) se turant mil jayega!"
+  },
+  {
+    "rowIndex": 2,
+    "waste": "Har pair check karna jabki numbers ko line se (sort) lagaya ja sakta hai",
+    "tool": "Sort + Two Pointers",
+    "gain": "O(n^2) -> O(n)",
+    "socraticQuestion": "Agar numbers chote se bade sort ho jayein, to dono ends pe do ungliyan (pointers) rakh kar, sum chota ya bada hone par bina nested loop ke direct answer kaise nikaloge?"
+  },
+  {
+    "rowIndex": 3,
+    "waste": "Khiskte hue dabbe (window) ka common hissa dobara jodna",
+    "tool": "Sliding Window",
+    "gain": "O(n^2) -> O(n)",
+    "socraticQuestion": "Jab ek continuous dabba aage badhta hai, to sirf aage wala naya number judta hai aur peeche wala hat-ta hai. Poora dabba dobara jodne ke bajaye sirf un do numbers ko add/remove kaise karoge?"
+  },
+  {
+    "rowIndex": 4,
+    "waste": "Answer ki range me ek-ek karke check karna (linear search)",
+    "tool": "Binary Search (on Answer)",
+    "gain": "O(n) -> O(log n)",
+    "socraticQuestion": "Agar answer ki ek fixed range hai (jaise speed 1 se 100), aur kisi beech ke number (50) par test karne se pata chal jaye ki answer left me hoga ya right me, to har step pe aadhi possibilities kaise hataoge?"
+  },
+  {
+    "rowIndex": 5,
+    "waste": "Ek hi chhota question recursion me 10 baar dobara solve karna",
+    "tool": "Dynamic Programming (Memoization / Tabulation)",
+    "gain": "O(2^n) -> O(n)",
+    "socraticQuestion": "Kya function wahi same arguments ke sath baar-baar call ho raha hai? Ek baar answer calculate karke kisi table ya array me save (memoize) karke dubara mehnat se kaise bachoge?"
+  },
+  {
+    "rowIndex": 6,
+    "waste": "Pichhle pending numbers ka order yaad rakhna (Next Greater Element)",
+    "tool": "Monotonic Stack",
+    "gain": "O(n^2) -> O(n)",
+    "socraticQuestion": "Har number ke liye uska agla bada number ya matching bracket dhoondhna hai? Jo numbers abhi solve nahi hue unhe ek stack me rakh kar, naya number aate hi unhe ek-ek karke kaise nipatoge?"
+  },
+  {
+    "rowIndex": 7,
+    "waste": "Har baar sabse chhota ya sabse bada number dhoondhne ke liye poora array scan karna",
+    "tool": "Heap / PriorityQueue (Size K)",
+    "gain": "O(n) -> O(log k)",
+    "socraticQuestion": "Kya tumhe hamesha top-K elements ya sabse chhota/bada number chahiye? Ek Heap rakh kar har step pe bina poora array scan kiye sabse best number kaise paoge?"
+  },
+  {
+    "rowIndex": 8,
+    "waste": "Intervals me aapas me takraav (overlap) dhoondhne ke liye har pair ko compare karna",
+    "tool": "Sort by Start/End + Greedy",
+    "gain": "O(n^2) -> O(n log n)",
+    "socraticQuestion": "Agar intervals ko shuru hone ke time (start time) ke hisaab se line me laga lein, to kya har interval ko sirf apne pichhle wale ke end time se compare karke kaam nahi ho jayega?"
+  }
+]

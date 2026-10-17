@@ -1,0 +1,65 @@
+[
+  {
+    "id": "e1",
+    "label": "📭 Empty input / size 0",
+    "sawal": "Agar input array/string empty [] ya \"\" ho to answer kya hona chahiye?",
+    "action": "Check constraints me min size kya hai (sizeLo >= 1 ya 0?). Agar 0 possible hai to starting me base check lagao.",
+    "trap": "Direct nums[0] access karna bina size check kiye (IndexOutOfBounds / NullPointer throw karega)."
+  },
+  {
+    "id": "e2",
+    "label": "1️⃣ Single element (n = 1)",
+    "sawal": "Kya logic tab bhi kaam karega jab array me sirf 1 hi element ho?",
+    "action": "Loop conditions (left < right ya i < n - 1) ko n=1 pe dry run karo.",
+    "trap": "Loops jo kam se kam 2 elements expect karte hain (jaise pair comparisons) crash ya wrong answer de sakte hain."
+  },
+  {
+    "id": "e3",
+    "label": "👯 Sab elements identical (All duplicates)",
+    "sawal": "Agar input ke saare elements bilkul same hon (e.g. [2, 2, 2, 2]), to kya logic infinite loop me fasega?",
+    "action": "Two pointers ya binary search me duplicate skipping logic (nums[i] == nums[i-1]) ko test karo.",
+    "trap": "Pointers ka static reh jana (stuck in while loop) ya partition logic ka unbalanced split dena (QuickSelect worst case)."
+  },
+  {
+    "id": "e4",
+    "label": "➖ Negative numbers & Zero",
+    "sawal": "Kya negative values sum ko ghatati hain? Kya zero se division ya multiplication me gadbad hogi?",
+    "action": "Sliding window me sum badhne ki assumption mat lo (negatives me window contract hone par bhi sum badh sakta hai). Prefix Sum + Map socho.",
+    "trap": "Sliding window ko negatives wale array pe laga dena (window condition monotonic nahi rehti)."
+  },
+  {
+    "id": "e5",
+    "label": "🔁 Duplicates allowed",
+    "sawal": "Kya answer me distinct elements chahiye ya duplicates allow hain? Output me duplicates kaise handle karne hain?",
+    "action": "HashSet use karo ya array ko sort karke adjacent identical elements ko `if (i > start && nums[i] == nums[i-1]) continue;` se skip karo.",
+    "trap": "Subsets / Combinations me duplicate sets generate kar dena jo problem me strictly forbidden hote hain."
+  },
+  {
+    "id": "e6",
+    "label": "📶 Already sorted / Reverse sorted",
+    "sawal": "Agar array already ascending ya strictly descending order me ho, to kya algorithms (jaise QuickSort pivot) degenerate honge?",
+    "action": "Extreme monotonicity pe check karo: left aur right pointers boundary paar to nahi kar rahe?",
+    "trap": "Binary search me infinite loop jab mid pointer move nahi karta."
+  },
+  {
+    "id": "e7",
+    "label": "💥 Integer overflow (> 2^31 - 1)",
+    "sawal": "Kya sum, product ya mid calculation (low + high) 2 * 10^9 exceed kar sakta hai?",
+    "action": "Sum ke liye 64-bit integer (`long` in Java/C++, `BigInt` in JS) use karo. Mid ke liye `lo + (hi - lo) / 2` likho.",
+    "trap": "`(lo + hi) / 2` likhna jab lo aur hi dono ~10^9 hain (2 * 10^9 integer limit todkar negative number ban jayega)."
+  },
+  {
+    "id": "e8",
+    "label": "🚫 Index out of bounds (i ± 1, mid - 1)",
+    "sawal": "Jab tum `nums[i + 1]` ya `nums[i - 1]` check karte ho, to kya i = 0 ya i = n - 1 pe bounds cross ho sakte hain?",
+    "action": "Boundary guards lagao: `i > 0 && nums[i] == nums[i-1]` ya `i + 1 < n`.",
+    "trap": "Guard condition ko baad me likhna, jaise `nums[i-1] == x && i > 0` (pehle access hoga phir check, jo crash karega)."
+  },
+  {
+    "id": "e9",
+    "label": "❓ No valid solution exists",
+    "sawal": "Agar problem ka koi valid answer na mile, to return type kya honi chahiye? (-1, empty array [], null, false)?",
+    "action": "Problem statement ki last line ('Return -1 if not found') padho aur default return statement sahi set karo.",
+    "trap": "Function ke end me undefined ya unhandled path chhod dena."
+  }
+]

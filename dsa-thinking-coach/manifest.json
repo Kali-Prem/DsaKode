@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "DSA Thinking Coach",
+  "version": "0.1.0",
+  "description": "LeetCode problem pe constraints, keywords aur test case se logic kaise banana hai - step by step Hinglish guide (Prem's DSA Logic Building Playbook).",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["rules.js", "content.js"],
+      "css": ["panel.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

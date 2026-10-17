@@ -1,0 +1,77 @@
+@import '../ui/fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:host {
+  all: initial;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color-scheme: light dark;
+}
+
+/* Design Tokens & CSS Variables */
+:host, .dsa-root {
+  font-size: 14px;
+  line-height: 1.5;
+  --dsa-radius: 12px;
+  --dsa-accent: #6366f1;
+  --dsa-accent-hover: #4f46e5;
+  --dsa-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --dsa-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.dsa-root.dark, .dark {
+  --dsa-bg: rgba(9, 13, 22, 0.92);
+  --dsa-surface: #111827;
+  --dsa-surface-subtle: #172033;
+  --dsa-border: rgba(255, 255, 255, 0.08);
+  --dsa-border-strong: rgba(255, 255, 255, 0.16);
+  --dsa-text: #f8fafc;
+  --dsa-text-muted: #94a3b8;
+  --dsa-text-subtle: #64748b;
+  --dsa-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.55), 0 0 1px 1px rgba(255, 255, 255, 0.07);
+}
+
+.dsa-root:not(.dark), .light {
+  --dsa-bg: rgba(255, 255, 255, 0.94);
+  --dsa-surface: #f8fafc;
+  --dsa-surface-subtle: #f1f5f9;
+  --dsa-border: rgba(0, 0, 0, 0.08);
+  --dsa-border-strong: rgba(0, 0, 0, 0.15);
+  --dsa-text: #0f172a;
+  --dsa-text-muted: #475569;
+  --dsa-text-subtle: #94a3b8;
+  --dsa-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.12), 0 0 1px 1px rgba(0, 0, 0, 0.06);
+}
+
+/* Custom Sleek Scrollbar */
+.dsa-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.dsa-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dsa-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+
+.dsa-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(148, 163, 184, 0.45);
+}
+
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

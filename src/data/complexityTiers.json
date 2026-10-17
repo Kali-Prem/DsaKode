@@ -1,0 +1,66 @@
+[
+  {
+    "id": "tier-factorial",
+    "max": 12,
+    "bigO": "O(n!)",
+    "techniques": "Permutations, Backtracking, Exhaustive Search",
+    "socraticHint": "n bahut hi chhota hai (<= 12). Kya tum saari possible permutations generate karke brute force try kar sakte ho?",
+    "tleExplanation": "n=12 pe 12! ≈ 4.79 * 10^8 operations hote hain. 12 se bada n TLE dega."
+  },
+  {
+    "id": "tier-exponential",
+    "max": 25,
+    "bigO": "O(2^n)",
+    "techniques": "Subsets, Bitmask DP, Recursion with Backtracking",
+    "socraticHint": "n <= 25 hai. Kya har element ke paas 'pick or skip' (2 choices) ka option hai? Subsets ya Bitmask DP socho.",
+    "tleExplanation": "2^20 ≈ 10^6 ops, 2^25 ≈ 3.3 * 10^7 ops (safe). 2^30 TLE de dega."
+  },
+  {
+    "id": "tier-cubic",
+    "max": 500,
+    "bigO": "O(n^3)",
+    "techniques": "3 Nested Loops, Floyd-Warshall, Interval/3D DP",
+    "socraticHint": "n <= 500 hai. Kya teen nested loops chal sakte hain? (500^3 ≈ 1.25 * 10^8 ops - borderline par chal jata hai).",
+    "tleExplanation": "500^3 = 1.25 * 10^8 ops. Agar loop ke andar heavy operations hain to optimize karna padega."
+  },
+  {
+    "id": "tier-quadratic",
+    "max": 5000,
+    "bigO": "O(n^2)",
+    "techniques": "2 Nested Loops, 2D Dynamic Programming",
+    "socraticHint": "n <= 5,000 hai. Saare pairs check karna O(n^2) me feasible hai (5000^2 = 2.5 * 10^7 ops < 10^8).",
+    "tleExplanation": "5,000^2 = 2.5 * 10^7 ops. Yeh 1 second limit (~10^8) ke andar aasaani se chal jayega."
+  },
+  {
+    "id": "tier-quadratic-borderline",
+    "max": 20000,
+    "bigO": "O(n^2) borderline (~10^8) ya safer O(n log n) / O(n)",
+    "techniques": "Optimized 2D DP, Sorting, Two Pointers",
+    "socraticHint": "n ≈ 20,000 hai. n^2 = 4 * 10^8 ops jo TLE de sakta hai! Kya tum O(n log n) ya O(n) me bottleneck break kar sakte ho?",
+    "tleExplanation": "20,000^2 = 4 * 10^8 ops. LeetCode ki ~10^8 limit cross ho sakti hai, isliye O(n^2) risky hai."
+  },
+  {
+    "id": "tier-nlogn",
+    "max": 300000,
+    "bigO": "O(n log n) ya O(n)",
+    "techniques": "Sorting, Heap / PriorityQueue, Binary Search, Two Pointers, Sliding Window, Prefix Sum",
+    "socraticHint": "n ≈ 10^5 hai. O(n^2) seedha TLE dega (10^10 ops!). Target complexity O(n log n) ya O(n) honi chahiye. Kaunsa data structure repetitive work hatayega?",
+    "tleExplanation": "10^5 pe n^2 = 10^10 ops (Guaranteed TLE). n log2(n) ≈ 1.7 * 10^6 ops (Super fast, < 0.05 sec)."
+  },
+  {
+    "id": "tier-linear",
+    "max": 10000000,
+    "bigO": "O(n)",
+    "techniques": "Single Pass, HashMap / HashSet, Sliding Window, Prefix Sum, Kadane",
+    "socraticHint": "n bahut bada hai (10^6 ya 10^7). Sirf single pass O(n) chalega. Kya har element ko ek hi baar visit karke answer maintain ho sakta hai?",
+    "tleExplanation": "10^7 pe O(n log n) bhi borderline ho jata hai. Sirf simple O(n) pass hi safe hai."
+  },
+  {
+    "id": "tier-log-or-constant",
+    "max": null,
+    "bigO": "O(log n) ya O(1)",
+    "techniques": "Binary Search, Math Formula, Bit Manipulation",
+    "socraticHint": "n >= 10^9 hai ya array access nahi hai. Array iterate karna impossible hai! Kya binary search on answer ya koi direct mathematical formula lag sakta hai?",
+    "tleExplanation": "n = 10^9 iterate karne me 10+ seconds lagenge. O(log n) me sirf ~30 iterations lagenge."
+  }
+]
