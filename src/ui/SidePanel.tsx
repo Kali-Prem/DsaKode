@@ -244,8 +244,12 @@ export const SidePanel: React.FC<SidePanelProps> = ({
             <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200/80 dark:border-white/[0.08] bg-slate-50/80 dark:bg-slate-950/50 shrink-0">
               {/* Problem info */}
               <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                <div className="p-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20 shrink-0">
-                  <Brain className="w-4 h-4" />
+                <div className="w-7 h-7 rounded-lg overflow-hidden shadow-sm border border-indigo-500/30 flex items-center justify-center bg-slate-950 shrink-0">
+                  <img
+                    src={typeof chrome !== 'undefined' && chrome.runtime?.getURL ? chrome.runtime.getURL('icons/icon-48.png') : '/icons/icon-48.png'}
+                    alt="DsaKode Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="min-w-0 flex items-center gap-2">
                   <Tooltip content={problemTitle} position="bottom">
