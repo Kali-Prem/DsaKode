@@ -38,6 +38,7 @@ export const PreviewApp: React.FC = () => {
   const [panelDock, setPanelDock] = useState<'left' | 'right'>('right');
   const [panelWidth, setPanelWidth] = useState(440);
   const [panelMinimized, setPanelMinimized] = useState(false);
+  const [language, setLanguage] = useState<'en' | 'hi'>('hi');
 
   // Checkbox states for demo
   const [checks, setChecks] = useState<Record<string, boolean>>({
@@ -322,6 +323,8 @@ export const PreviewApp: React.FC = () => {
         onMinimizeChange={setPanelMinimized}
         themeMode={isDark ? 'dark' : 'light'}
         onThemeChange={(mode) => setIsDark(mode === 'dark')}
+        language={language}
+        onLanguageChange={setLanguage}
         onClose={() => setPanelOpen(false)}
         onReset={() => alert('Reset panel')}
       />
@@ -332,6 +335,8 @@ export const PreviewApp: React.FC = () => {
         progressStep={completedCount}
         totalSteps={8}
         dockSide={panelDock}
+        language={language}
+        onLanguageChange={setLanguage}
       />
     </div>
   );
