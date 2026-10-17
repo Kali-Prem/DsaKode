@@ -21,6 +21,7 @@ export const App: React.FC = () => {
   const [panelWidth, setPanelWidth] = useState<number>(440);
   const [isMinimized, setIsMinimized] = useState<boolean>(false);
   const [themeMode, setThemeMode] = useState<'auto' | 'dark' | 'light'>('auto');
+  const [language, setLanguage] = useState<'en' | 'hi'>('hi');
   const [progressStep, setProgressStep] = useState<number>(0);
 
   const navTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -37,6 +38,8 @@ export const App: React.FC = () => {
       if (state.isMinimized !== undefined) setIsMinimized(state.isMinimized);
       if (state.settings?.themeMode) setThemeMode(state.settings.themeMode);
       else if (state.themeMode) setThemeMode(state.themeMode);
+      if (state.settings?.language) setLanguage(state.settings.language);
+      else if (state.language) setLanguage(state.language);
       if (state.ladderProgress !== undefined) setProgressStep(state.ladderProgress);
     });
   }, []);
@@ -231,6 +234,18 @@ export const App: React.FC = () => {
     setStorageState({ themeMode: mode });
   };
 
+  const handleLanguageChange = (lang: 'en' | 'hi') => {
+    setLanguage(lang);
+    setStorageState((prev) => ({
+      ...prev,
+      language: lang,
+      settings: {
+        ...prev.settings,
+        language: lang,
+      },
+    }));
+  };
+
   const handleProgressChange = (count: number) => {
     setProgressStep(count);
     setStorageState({ ladderProgress: count });
@@ -251,6 +266,8 @@ export const App: React.FC = () => {
         onMinimizeChange={handleMinimizeChange}
         themeMode={themeMode}
         onThemeChange={handleThemeChange}
+        language={language}
+        onLanguageChange={handleLanguageChange}
         onClose={handleClose}
         onReset={() => refreshProblemData()}
         problem={parsedProblem}

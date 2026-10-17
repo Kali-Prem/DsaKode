@@ -4,17 +4,22 @@ import { KeywordHit, WasteToolRow } from '../../core/types';
 import rawWasteTools from '../../data/wasteTool.json';
 import { Badge } from '../components/Badge';
 
+import { getWasteToolRows } from '../../core/i18n';
+
 const WASTE_TOOL_ROWS: WasteToolRow[] = rawWasteTools as WasteToolRow[];
 
 export interface WasteToolMatrixSectionProps {
   keywordHits: KeywordHit[];
+  language?: 'en' | 'hi';
   className?: string;
 }
 
 export const WasteToolMatrixSection: React.FC<WasteToolMatrixSectionProps> = ({
   keywordHits,
+  language = 'hi',
   className = '',
 }) => {
+  const wasteToolRows = getWasteToolRows(language);
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
   // Collect matched waste rows from keywords
@@ -54,7 +59,7 @@ export const WasteToolMatrixSection: React.FC<WasteToolMatrixSectionProps> = ({
 
       {/* 9-Row Compact List */}
       <div className="space-y-2 max-h-80 overflow-y-auto dsa-scrollbar pr-1">
-        {WASTE_TOOL_ROWS.map((row) => {
+        {wasteToolRows.map((row) => {
           const isMatched = matchedWasteRows.has(row.rowIndex);
           const isExpanded = expandedRow === row.rowIndex;
 

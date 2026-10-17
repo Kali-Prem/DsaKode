@@ -8,6 +8,7 @@ import { Badge } from '../components/Badge';
 export interface ReflectionCardProps {
   slug: string;
   defaultPattern?: string;
+  language?: 'en' | 'hi';
   onSaved?: (reflection: ProblemReflection) => void;
   className?: string;
 }
@@ -15,6 +16,7 @@ export interface ReflectionCardProps {
 export const ReflectionCard: React.FC<ReflectionCardProps> = ({
   slug,
   defaultPattern = '',
+  language = 'hi',
   onSaved,
   className = '',
 }) => {
@@ -70,7 +72,9 @@ export const ReflectionCard: React.FC<ReflectionCardProps> = ({
               Playbook 3-Line Problem Reflection
             </span>
             <span className="text-xs text-slate-500 dark:text-slate-400 block mt-0.5">
-              Interview ke liye dimag me pattern permanently lock karo
+              {language === 'en'
+                ? 'Lock the pattern permanently into memory for interviews'
+                : 'Interview ke liye dimag me pattern permanently lock karo'}
             </span>
           </div>
         </div>
@@ -90,7 +94,9 @@ export const ReflectionCard: React.FC<ReflectionCardProps> = ({
             className="font-semibold text-xs sm:text-[13px] text-slate-900 dark:text-slate-200 flex items-center gap-1.5"
           >
             <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0" />
-            1. Is problem ka core pattern kya tha?
+            {language === 'en'
+              ? '1. What was the core pattern of this problem? (Is problem ka core pattern kya tha?)'
+              : '1. Is problem ka core pattern kya tha?'}
           </label>
           <input
             id="reflection-pattern"
@@ -100,7 +106,11 @@ export const ReflectionCard: React.FC<ReflectionCardProps> = ({
               setPattern(e.target.value);
               setIsSaved(false);
             }}
-            placeholder="Jaise: HashMap complement lookup, Two Pointers sorted range, Sliding Window..."
+            placeholder={
+              language === 'en'
+                ? 'e.g., HashMap complement lookup, Two Pointers sorted range, Sliding Window...'
+                : 'Jaise: HashMap complement lookup, Two Pointers sorted range, Sliding Window...'
+            }
             className="w-full text-sm px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans placeholder:text-slate-400"
           />
         </div>
@@ -112,7 +122,9 @@ export const ReflectionCard: React.FC<ReflectionCardProps> = ({
             className="font-semibold text-xs sm:text-[13px] text-slate-900 dark:text-slate-200 flex items-center gap-1.5"
           >
             <Lightbulb className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400 shrink-0" />
-            2. Kis keyword ya observation se intuition click hua?
+            {language === 'en'
+              ? '2. Which keyword or observation triggered intuition? (Kis keyword ya observation se intuition click hua?)'
+              : '2. Kis keyword ya observation se intuition click hua?'}
           </label>
           <input
             id="reflection-trigger"
@@ -122,7 +134,11 @@ export const ReflectionCard: React.FC<ReflectionCardProps> = ({
               setTriggerObservation(e.target.value);
               setIsSaved(false);
             }}
-            placeholder="Jaise: 'Array unsorted hai par target sum nikalna hai', 'Contiguous range constraint'..."
+            placeholder={
+              language === 'en'
+                ? "e.g., 'Array is unsorted but target sum needed', 'Contiguous range constraint'..."
+                : "Jaise: 'Array unsorted hai par target sum nikalna hai', 'Contiguous range constraint'..."
+            }
             className="w-full text-sm px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans placeholder:text-slate-400"
           />
         </div>
@@ -134,7 +150,9 @@ export const ReflectionCard: React.FC<ReflectionCardProps> = ({
             className="font-semibold text-xs sm:text-[13px] text-slate-900 dark:text-slate-200 flex items-center gap-1.5"
           >
             <Edit3 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-            3. Brute force me waste kya tha aur kis tool ne hataya?
+            {language === 'en'
+              ? '3. What was the waste in brute force & which tool eliminated it? (Brute force me waste kya tha aur kis tool ne hataya?)'
+              : '3. Brute force me waste kya tha aur kis tool ne hataya?'}
           </label>
           <input
             id="reflection-waste"
@@ -144,7 +162,11 @@ export const ReflectionCard: React.FC<ReflectionCardProps> = ({
               setWasteAndTool(e.target.value);
               setIsSaved(false);
             }}
-            placeholder="Jaise: 'Linear search O(n) ko HashMap O(1) lookup ne replace kiya'..."
+            placeholder={
+              language === 'en'
+                ? "e.g., 'Linear search O(N) was replaced by HashMap O(1) instant lookup'..."
+                : "Jaise: 'Linear search O(n) ko HashMap O(1) lookup ne replace kiya'..."
+            }
             className="w-full text-sm px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans placeholder:text-slate-400"
           />
         </div>

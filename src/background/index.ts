@@ -5,7 +5,7 @@
  */
 import { getStorageState } from '../core/storage';
 import { AskCoachContext, AIConfig } from '../core/types';
-import { DSA_COACH_SYSTEM_PROMPT, formatUserContext } from './prompt';
+import { DSA_COACH_SYSTEM_PROMPT, getSystemPrompt, formatUserContext } from './prompt';
 
 // Test connection handler
 async function handleTestApiKey(config: AIConfig): Promise<{ success: boolean; message: string }> {
@@ -105,6 +105,7 @@ export async function askCoach(context: AskCoachContext): Promise<{ success: boo
         config.apiKey.trim()
       )}`;
 
+      const systemPrompt = getSystemPrompt(context.language);
       const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -112,7 +113,7 @@ export async function askCoach(context: AskCoachContext): Promise<{ success: boo
           contents: [
             {
               role: 'user',
-              parts: [{ text: `${DSA_COACH_SYSTEM_PROMPT}\n\n${promptText}` }],
+              parts: [{ text: `${systemPrompt}\n\n${promptText}` }],
             },
           ],
           generationConfig: {
@@ -143,6 +144,7 @@ export async function askCoach(context: AskCoachContext): Promise<{ success: boo
       // Claude
       const model = config.model || 'claude-3-5-sonnet-20241022';
       const url = 'https://api.anthropic.com/v1/messages';
+      const systemPrompt = getSystemPrompt(context.language);
 
       const res = await fetch(url, {
         method: 'POST',
@@ -155,7 +157,7 @@ export async function askCoach(context: AskCoachContext): Promise<{ success: boo
         body: JSON.stringify({
           model,
           max_tokens: 600,
-          system: DSA_COACH_SYSTEM_PROMPT,
+          system: systemPrompt,
           messages: [{ role: 'user', content: promptText }],
         }),
       });

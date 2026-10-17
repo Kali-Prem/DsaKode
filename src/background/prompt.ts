@@ -33,6 +33,16 @@ STRICT SOCRATIC RULES (ZERO CODE GUARANTEE - ZERO TOLERANCE - HAR HAALAT ME MANN
    Ek response me sirf 1 ya 2 concise sawal poocho taaki candidate step-by-step soche.
 `;
 
+export function getSystemPrompt(language?: 'en' | 'hi'): string {
+  if (language === 'en') {
+    return `${DSA_COACH_SYSTEM_PROMPT}
+
+LANGUAGE INSTRUCTION:
+The user has selected ENGLISH mode. Respond in clear, natural, encouraging Socratic English (e.g., "Since the array is unsorted, will two-pointers work?", "What is the redundant waste in the brute force?"). Keep responses concise in 2-4 lines. Never provide direct code.`;
+  }
+  return DSA_COACH_SYSTEM_PROMPT;
+}
+
 export function formatUserContext(ctx: AskCoachContext): string {
   const exampleText =
     ctx.examples && ctx.examples.length > 0

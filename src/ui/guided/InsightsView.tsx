@@ -12,6 +12,7 @@ import { InsightsEmptyState } from './InsightsEmptyState';
 export interface InsightsViewProps {
   problem: ParsedProblem;
   analysis: CoachAnalysis;
+  language?: 'en' | 'hi';
   isLoading?: boolean;
   onRetry?: () => void;
   className?: string;
@@ -20,6 +21,7 @@ export interface InsightsViewProps {
 export const InsightsView: React.FC<InsightsViewProps> = ({
   problem,
   analysis,
+  language = 'hi',
   isLoading = false,
   onRetry,
   className = '',
@@ -65,6 +67,7 @@ export const InsightsView: React.FC<InsightsViewProps> = ({
       {/* 4. Waste -> Tool Prescription Matrix (9 Rows, Glowing Matched) */}
       <WasteToolMatrixSection
         keywordHits={analysis.keywordHits}
+        language={language}
       />
 
       {/* 5. Example 1 & Size Transition Visual (n -> n, n -> 1, n -> 2^n) */}

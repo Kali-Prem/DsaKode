@@ -12,6 +12,7 @@ import {
   Sparkles,
   Layers,
   Bot,
+  Languages,
 } from 'lucide-react';
 import { Badge, BadgeVariant } from './components/Badge';
 import { Button } from './components/Button';
@@ -31,7 +32,7 @@ export interface SidePanelProps {
   difficulty?: ProblemDifficulty;
   onClose: () => void;
   onReset?: () => void;
-  // Layout preferences
+  // Layout & language preferences
   dockSide?: 'left' | 'right';
   onDockChange?: (side: 'left' | 'right') => void;
   width?: number;
@@ -40,6 +41,8 @@ export interface SidePanelProps {
   onMinimizeChange?: (minimized: boolean) => void;
   themeMode?: 'auto' | 'dark' | 'light';
   onThemeChange?: (mode: 'auto' | 'dark' | 'light') => void;
+  language?: 'en' | 'hi';
+  onLanguageChange?: (lang: 'en' | 'hi') => void;
   // Optional precomputed problem/analysis & progress sync
   problem?: ParsedProblem;
   analysis?: CoachAnalysis;
@@ -61,6 +64,8 @@ export const SidePanel: React.FC<SidePanelProps> = ({
   onMinimizeChange,
   themeMode = 'auto',
   onThemeChange,
+  language = 'hi',
+  onLanguageChange,
   problem,
   analysis,
   onProgressChange,
@@ -258,6 +263,22 @@ export const SidePanel: React.FC<SidePanelProps> = ({
 
               {/* Action Buttons */}
               <div className="flex items-center gap-1 shrink-0">
+                {/* Language Toggle: EN / HI */}
+                <Tooltip
+                  content={language === 'en' ? 'Switch to Hindi (हिंदी)' : 'Switch to English (Change to English)'}
+                  position="bottom"
+                >
+                  <button
+                    type="button"
+                    onClick={() => onLanguageChange && onLanguageChange(language === 'en' ? 'hi' : 'en')}
+                    aria-label="Toggle Language"
+                    className="h-7 px-2 flex items-center gap-1 rounded-md text-xs font-bold transition-all bg-indigo-50 hover:bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:hover:bg-indigo-500/30 dark:text-indigo-300 border border-indigo-200/80 dark:border-indigo-500/30"
+                  >
+                    <Languages className="w-3.5 h-3.5" />
+                    <span className="text-[11px] font-black uppercase tracking-wider">{language === 'en' ? 'EN' : 'HI'}</span>
+                  </button>
+                </Tooltip>
+
                 {/* Theme Mode Toggle */}
                 <Tooltip content={`Theme: ${themeMode} (click to cycle)`} position="bottom">
                   <Button
@@ -329,7 +350,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                     activeId={activeTab}
                     onChange={(id) => setActiveTab(id as any)}
                     tabs={[
-                      { id: 'guided', label: 'Guided Ladder', icon: <Layers className="w-3.5 h-3.5" />, badge: '8 steps' },
+                      { id: 'guided', label: language === 'en' ? 'Ladder' : 'Guided Ladder', icon: <Layers className="w-3.5 h-3.5" />, badge: '8 steps' },
                       { id: 'insights', label: 'Insights', icon: <Sparkles className="w-3.5 h-3.5" /> },
                       { id: 'ask-coach', label: 'Ask Coach', icon: <Bot className="w-3.5 h-3.5" />, badge: 'AI' },
                     ]}
@@ -342,6 +363,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                     <GuidedWizard
                        problem={effectiveProblem}
                        analysis={effectiveAnalysis}
+                       language={language}
                        onProgressChange={onProgressChange}
                     />
                   )}
@@ -350,6 +372,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                     <InsightsView
                       problem={effectiveProblem}
                       analysis={effectiveAnalysis}
+                      language={language}
                       onRetry={onReset}
                     />
                   )}
@@ -357,6 +380,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                   {activeTab === 'ask-coach' && (
                     <AskCoachView
                       problem={effectiveProblem}
+                      language={language}
                     />
                   )}
                 </div>

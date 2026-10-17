@@ -17,6 +17,7 @@ import {
 const STORAGE_KEY = 'dsa_coach_state';
 
 export const defaultSettings: CoachSettings = {
+  language: 'hi',
   themeMode: 'auto',
   defaultDockSide: 'right',
   hintTimerSeconds: 60,
@@ -37,6 +38,7 @@ export const defaultState: CoachStorageState = {
   settings: defaultSettings,
   aiConfig: defaultAIConfig,
   isOpen: false,
+  language: 'hi',
   activeSlug: null,
   problemHistory: {},
   checksBySlug: {},
@@ -58,12 +60,16 @@ export function migrateStorageState(raw: any): CoachStorageState {
     return { ...defaultState };
   }
 
+  const effectiveLang = raw.language || raw.settings?.language || defaultSettings.language;
+
   const state: CoachStorageState = {
     ...defaultState,
     ...raw,
+    language: effectiveLang,
     settings: {
       ...defaultSettings,
       ...(raw.settings || {}),
+      language: effectiveLang,
       themeMode: raw.themeMode || raw.settings?.themeMode || defaultSettings.themeMode,
       defaultDockSide: raw.dockSide || raw.settings?.defaultDockSide || defaultSettings.defaultDockSide,
       panelWidth: raw.panelWidth || raw.settings?.panelWidth || defaultSettings.panelWidth,

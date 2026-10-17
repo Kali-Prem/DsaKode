@@ -18,6 +18,7 @@ import rawWasteTools from '../../data/wasteTool.json';
 import { Card } from '../components/Card';
 import { Badge } from '../components/Badge';
 import { Chip } from '../components/Chip';
+import { getWasteToolRows } from '../../core/i18n';
 
 const WASTE_TOOL_ROWS: WasteToolRow[] = rawWasteTools as WasteToolRow[];
 
@@ -25,6 +26,7 @@ export interface StepContextViewProps {
   step: number;
   problem: ParsedProblem;
   analysis: CoachAnalysis;
+  language?: 'en' | 'hi';
   className?: string;
 }
 
@@ -32,9 +34,11 @@ export const StepContextView: React.FC<StepContextViewProps> = ({
   step,
   problem,
   analysis,
+  language = 'hi',
   className = '',
 }) => {
   const [selectedWasteRow, setSelectedWasteRow] = useState<number | null>(null);
+  const wasteToolRows = getWasteToolRows(language);
 
   // Common references
   const firstExample = problem.examples.length > 0 ? problem.examples[0] : null;
@@ -354,7 +358,7 @@ export const StepContextView: React.FC<StepContextViewProps> = ({
             </p>
 
             <div className="space-y-2 max-h-64 overflow-y-auto dsa-scrollbar pr-1 pt-1">
-              {WASTE_TOOL_ROWS.map((row) => {
+              {wasteToolRows.map((row) => {
                 const isMatched = matchedWasteRows.has(row.rowIndex);
                 const isSelected = selectedWasteRow === row.rowIndex;
 

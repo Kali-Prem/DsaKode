@@ -10,9 +10,11 @@ import {
   Settings,
   Calendar,
   Layers,
+  Languages,
 } from 'lucide-react';
 import {
   getStorageState,
+  setStorageState,
   getTodayProblemsCount,
   getCurrentStreak,
   getRevisionDueProblems,
@@ -20,6 +22,7 @@ import {
   markProblemRevised,
 } from '../core/storage';
 import { CoachStorageState, ProblemRecord } from '../core/types';
+import { Language } from '../core/i18n';
 import { Badge } from '../ui/components/Badge';
 import { Button } from '../ui/components/Button';
 import '../content/content.css';
@@ -41,6 +44,20 @@ export const Popup: React.FC = () => {
   const handleMarkRevised = async (slug: string) => {
     await markProblemRevised(slug);
     await loadData();
+  };
+
+  const handleToggleLanguage = async () => {
+    const currentLang = state?.language || state?.settings?.language || 'hi';
+    const nextLang: Language = currentLang === 'hi' ? 'en' : 'hi';
+    const nextState = await setStorageState((prev) => ({
+      ...prev,
+      language: nextLang,
+      settings: {
+        ...prev.settings,
+        language: nextLang,
+      },
+    }));
+    setState(nextState);
   };
 
   const openOptionsPage = () => {
@@ -70,6 +87,7 @@ export const Popup: React.FC = () => {
   const streak = getCurrentStreak(history);
   const revisionDue = getRevisionDueProblems(history);
   const recentProblems = getLastNProblems(history, 5);
+  const lang: Language = state.language || state.settings?.language || 'hi';
 
   const formatDate = (ts: number): string => {
     const diffHours = (Date.now() - ts) / (1000 * 60 * 60);
@@ -99,10 +117,26 @@ export const Popup: React.FC = () => {
           </div>
         </div>
 
-        {/* Streak Badge */}
-        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-xs font-bold shadow-sm">
-          <Flame className="w-4 h-4 text-amber-500 fill-amber-500/40" />
-          <span>{streak} day{streak === 1 ? '' : 's'}</span>
+        {/* Language & Streak Badges */}
+        <div className="flex items-center gap-2">
+          {/* Language Toggle Button */}
+          <button
+            type="button"
+            onClick={handleToggleLanguage}
+            title={lang === 'hi' ? 'Switch to English (अंग्रेज़ी में बदलें)' : 'Switch to Hinglish (हिंग्लिश में बदलें)'}
+            className="flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 text-slate-200 text-xs font-semibold transition-all shadow-sm"
+          >
+            <Languages className="w-3.5 h-3.5 text-indigo-400" />
+            <span className="font-mono text-[11px] font-bold text-indigo-300 uppercase">
+              {lang === 'hi' ? 'EN' : 'HI'}
+            </span>
+          </button>
+
+          {/* Streak Badge */}
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-xs font-bold shadow-sm">
+            <Flame className="w-4 h-4 text-amber-500 fill-amber-500/40" />
+            <span>{streak} day{streak === 1 ? '' : 's'}</span>
+          </div>
         </div>
       </div>
 
@@ -129,7 +163,7 @@ export const Popup: React.FC = () => {
         >
           <div className="flex items-center justify-between text-xs">
             <span className={revisionDue.length > 0 ? 'text-amber-300 font-semibold' : 'text-slate-400'}>
-              Revise Karo
+              {lang === 'hi' ? 'Revise Karo' : 'Spaced Revision'}
             </span>
             <RotateCcw className={`w-3.5 h-3.5 ${revisionDue.length > 0 ? 'text-amber-400' : 'text-slate-400'}`} />
           </div>
@@ -254,7 +288,9 @@ export const Popup: React.FC = () => {
           </div>
         ) : (
           <div className="p-3 rounded-xl bg-slate-900/40 border border-slate-800/60 text-center text-xs text-slate-400 italic">
-            Koi problem abhi solve nahi ki. LeetCode kholein aur ladder start karein!
+            {lang === 'hi'
+              ? 'Koi problem abhi solve nahi ki. LeetCode kholein aur ladder start karein!'
+              : 'No problems solved yet. Open LeetCode and start the ladder!'}
           </div>
         )}
       </div>

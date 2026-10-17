@@ -21,10 +21,18 @@ export interface AskCoachViewProps {
   problem: ParsedProblem;
   currentStep?: number;
   currentNotes?: string;
+  language?: 'en' | 'hi';
   className?: string;
 }
 
-const QUICK_PROMPTS = [
+const QUICK_PROMPTS_EN = [
+  'I am thinking of sliding window, will that work?',
+  'What is the repetitive waste in brute force?',
+  'Will O(n²) pass within these constraints or TLE?',
+  'Since the array is unsorted, what should my first intuition be?',
+];
+
+const QUICK_PROMPTS_HI = [
   'Main sliding window soch raha hoon, kya ye chalega?',
   'Brute force me repetitive waste kya ho raha hai?',
   'Is constraints pe O(n²) chalega ya TLE aayega?',
@@ -35,8 +43,10 @@ export const AskCoachView: React.FC<AskCoachViewProps> = ({
   problem,
   currentStep = 1,
   currentNotes = '',
+  language = 'hi',
   className = '',
 }) => {
+  const quickPrompts = language === 'en' ? QUICK_PROMPTS_EN : QUICK_PROMPTS_HI;
   const [aiConfig, setAIConfig] = useState<AIConfig>(defaultAIConfig);
   const [resolvedStep, setResolvedStep] = useState(currentStep);
   const [resolvedNotes, setResolvedNotes] = useState(currentNotes);
@@ -44,7 +54,10 @@ export const AskCoachView: React.FC<AskCoachViewProps> = ({
     {
       id: 'welcome',
       sender: 'coach',
-      text: 'Namaste! Main tumhara Socratic DSA Coach hoon. Is problem pe tumhara kya dhyan ja raha hai? Apni current soch share karo, main guide karunga bina solution diye.',
+      text:
+        language === 'en'
+          ? 'Hello! I am your Socratic DSA Coach. What initial thoughts do you have on this problem? Share your current thinking, and I will guide you without giving any direct code.'
+          : 'Namaste! Main tumhara Socratic DSA Coach hoon. Is problem pe tumhara kya dhyan ja raha hai? Apni current soch share karo, main guide karunga bina solution diye.',
       timestamp: Date.now(),
     },
   ]);
@@ -116,6 +129,7 @@ export const AskCoachView: React.FC<AskCoachViewProps> = ({
       currentStep: currentNotes ? currentStep : resolvedStep,
       currentNotes: currentNotes || resolvedNotes,
       userMessage: userText.trim(),
+      language: language,
     };
 
     // Chrome port streaming or fallback
@@ -335,10 +349,10 @@ export const AskCoachView: React.FC<AskCoachViewProps> = ({
       {/* Quick Prompt Suggestions */}
       <div className="space-y-1.5">
         <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider block font-semibold px-1">
-          Quick Prompts:
+          {language === 'en' ? 'Quick Prompts:' : 'Quick Prompts:'}
         </span>
         <div className="flex flex-wrap gap-1.5">
-          {QUICK_PROMPTS.map((promptText, i) => (
+          {quickPrompts.map((promptText, i) => (
             <button
               key={i}
               type="button"
@@ -365,7 +379,11 @@ export const AskCoachView: React.FC<AskCoachViewProps> = ({
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           disabled={isGenerating}
-          placeholder="Apni current soch likho (jaise: 'Main sliding window soch raha hoon')..."
+          placeholder={
+            language === 'en'
+              ? "Share your current thoughts (e.g., 'I am thinking of a sliding window')..."
+              : "Apni current soch likho (jaise: 'Main sliding window soch raha hoon')..."
+          }
           className="flex-1 text-sm px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-colors"
         />
 
@@ -377,7 +395,7 @@ export const AskCoachView: React.FC<AskCoachViewProps> = ({
           icon={<Send className="w-4 h-4" />}
           className="h-10 px-4 shrink-0 text-xs sm:text-sm font-semibold"
         >
-          Poocho
+          {language === 'en' ? 'Ask' : 'Poocho'}
         </Button>
       </form>
     </div>

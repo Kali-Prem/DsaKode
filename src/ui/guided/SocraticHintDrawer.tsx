@@ -18,6 +18,7 @@ export interface SocraticHintDrawerProps {
   unlockedLevel: number; // 0 = locked, 1 = L1, 2 = L2, 3 = L3
   onUnlockLevel: (level: number) => void;
   analysis: CoachAnalysis;
+  language?: 'en' | 'hi';
   className?: string;
 }
 
@@ -28,6 +29,7 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
   unlockedLevel,
   onUnlockLevel,
   analysis,
+  language = 'hi',
   className = '',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -141,7 +143,10 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
           <div className="flex items-center gap-2 p-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-800 dark:text-emerald-400 text-xs leading-relaxed">
             <ShieldCheck className="w-4 h-4 shrink-0" />
             <span>
-              <strong>Zero Code Guarantee:</strong> Yahan solution ya code <em>kabhi nahi</em> milega. Sirf sochne ki disha dikhayi jayegi.
+              <strong>Zero Code Guarantee:</strong>{' '}
+              {language === 'en'
+                ? 'Solutions or code will never be shown here. Only intuition direction.'
+                : 'Yahan solution ya code kabhi nahi milega. Sirf sochne ki disha dikhayi jayegi.'}
             </span>
           </div>
 
@@ -150,7 +155,9 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
             <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 text-amber-900 dark:text-amber-200 space-y-2.5 text-center animate-pulse">
               <div className="flex items-center justify-center gap-2 text-xs font-semibold">
                 <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400 animate-spin" />
-                Pehle Khud Socho... ({secondsRemaining}s baaki)
+                {language === 'en'
+                  ? `Think on your own first... (${secondsRemaining}s remaining)`
+                  : `Pehle Khud Socho... (${secondsRemaining}s baaki)`}
               </div>
 
               {/* Progress bar */}
@@ -162,12 +169,15 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
               </div>
 
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                💡 <strong>Playbook Rule:</strong> Dimag ki muscle tabhi banti hai jab 60 seconds bina kisi hint ke pen-paper pe khud sochte ho. Real interview me koi direct hint nahi deta!
+                💡 <strong>Playbook Rule:</strong>{' '}
+                {language === 'en'
+                  ? 'Brain muscle builds when you spend 60 seconds thinking on pen-and-paper without hints. In real interviews, nobody gives direct answers!'
+                  : 'Dimag ki muscle tabhi banti hai jab 60 seconds bina kisi hint ke pen-paper pe khud sochte ho. Real interview me koi direct hint nahi deta!'}
               </p>
 
               <div className="flex items-center justify-center gap-2 pt-1">
                 <Button variant="ghost" size="sm" onClick={handleCancelTimer} className="text-xs">
-                  Ruko, main khud sochunga
+                  {language === 'en' ? "Wait, I'll think myself" : 'Ruko, main khud sochunga'}
                 </Button>
                 <Button
                   variant="outline"
@@ -175,7 +185,7 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
                   onClick={() => handleFastUnlock(pendingLevel)}
                   className="text-xs text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-500/30 hover:bg-amber-100 dark:hover:bg-amber-500/20"
                 >
-                  Maine soch liya (Unlock now)
+                  {language === 'en' ? "I've thought it through (Unlock now)" : 'Maine soch liya (Unlock now)'}
                 </Button>
               </div>
             </div>
@@ -199,7 +209,7 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
                     <Lock className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                   )}
                   <span className="font-semibold text-xs text-slate-900 dark:text-slate-100">
-                    Level 1: Socratic Nudge (Sawal)
+                    {language === 'en' ? 'Level 1: Socratic Nudge (Question)' : 'Level 1: Socratic Nudge (Sawal)'}
                   </span>
                 </div>
                 {unlockedLevel < 1 && pendingLevel !== 1 && (
@@ -220,7 +230,7 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
                 </div>
               ) : (
                 <p className="text-xs text-slate-500 italic mt-0.5">
-                  Locked. Pehle 60s khud dimag lagao, phir unlock karo.
+                  {language === 'en' ? 'Locked. Think for 60s first, then unlock.' : 'Locked. Pehle 60s khud dimag lagao, phir unlock karo.'}
                 </p>
               )}
             </div>
@@ -241,7 +251,7 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
                     <Lock className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                   )}
                   <span className="font-semibold text-xs text-slate-900 dark:text-slate-100">
-                    Level 2: Candidate Pattern Ka Naam
+                    {language === 'en' ? 'Level 2: Candidate Pattern Name' : 'Level 2: Candidate Pattern Ka Naam'}
                   </span>
                 </div>
                 {unlockedLevel < 2 && unlockedLevel >= 1 && pendingLevel !== 2 && (
@@ -262,12 +272,14 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
                     {hintL2_Pattern}
                   </span>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                    Is pattern ko paper pe trace karo aur dekho kaise fit hota hai.
+                    {language === 'en' ? 'Trace this pattern on pen-and-paper to see how it fits.' : 'Is pattern ko paper pe trace karo aur dekho kaise fit hota hai.'}
                   </p>
                 </div>
               ) : (
                 <p className="text-xs text-slate-500 italic mt-0.5">
-                  {unlockedLevel < 1 ? 'Pehle Level 1 unlock karo.' : 'Locked. Pehle 60s khud socho.'}
+                  {unlockedLevel < 1
+                    ? (language === 'en' ? 'Unlock Level 1 first.' : 'Pehle Level 1 unlock karo.')
+                    : (language === 'en' ? 'Locked. Think for 60s first.' : 'Locked. Pehle 60s khud socho.')}
                 </p>
               )}
             </div>
@@ -288,7 +300,7 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
                     <Lock className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                   )}
                   <span className="font-semibold text-xs text-slate-900 dark:text-slate-100">
-                    Level 3: Intuition (Ye Pattern Kyun Chalta Hai?)
+                    {language === 'en' ? 'Level 3: Intuition (Why This Pattern Works)' : 'Level 3: Intuition (Ye Pattern Kyun Chalta Hai?)'}
                   </span>
                 </div>
                 {unlockedLevel < 3 && unlockedLevel >= 2 && pendingLevel !== 3 && (
@@ -309,7 +321,9 @@ export const SocraticHintDrawer: React.FC<SocraticHintDrawerProps> = ({
                 </div>
               ) : (
                 <p className="text-xs text-slate-500 italic mt-0.5">
-                  {unlockedLevel < 2 ? 'Pehle Level 2 unlock karo.' : 'Locked. Deep intuition unlock karne se pehle 60s socho.'}
+                  {unlockedLevel < 2
+                    ? (language === 'en' ? 'Unlock Level 2 first.' : 'Pehle Level 2 unlock karo.')
+                    : (language === 'en' ? 'Locked. Think for 60s before unlocking intuition.' : 'Locked. Deep intuition unlock karne se pehle 60s socho.')}
                 </p>
               )}
             </div>

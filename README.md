@@ -138,7 +138,18 @@ Want interactive conversational guidance while coding? DsaKode includes a dedica
 
 ---
 
-### 🎨 5. Seamless LeetCode Integration & Accessibility
+### 🌐 5. Bilingual Support (English & Hinglish / हिंदी)
+
+- **Instant Language Toggle**: Switch between **English** and **Hinglish** at any time with a single click in the SidePanel header `[EN / HI]` or Popup header.
+- **Full Localization**:
+  - All 8 Thinking Ladder steps, Socratic questions, and traps available in professional English or relatable Hinglish.
+  - Waste-to-Tool Matrix and Socratic hint nudges translated.
+  - Socratic AI Coach automatically adapts its conversational language and system prompt to your chosen language.
+- **Persistent Preferences**: Language selection is saved securely in your browser's extension storage.
+
+---
+
+### 🎨 6. Seamless LeetCode Integration & Accessibility
 
 - **Zero Layout Shift (CLS = 0)**: Injected cleanly into an isolated **Shadow DOM** with fixed positioning. Never interferes with LeetCode's code editor, Monaco bindings, or layout containers.
 - **Adaptive Theme Synchronization**: Automatically detects whether LeetCode is in **Dark** or **Light** mode and syncs panel styles instantly, with manual override support.

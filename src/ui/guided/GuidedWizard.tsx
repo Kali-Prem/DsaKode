@@ -18,12 +18,12 @@ import { StepCard } from './StepCard';
 import { ReflectionCard } from './ReflectionCard';
 import { Button } from '../components/Button';
 import { Badge } from '../components/Badge';
-
-const LADDER_STEPS: ThinkingLadderStep[] = rawLadder as ThinkingLadderStep[];
+import { getLadderSteps, Language } from '../../core/i18n';
 
 export interface GuidedWizardProps {
   problem: ParsedProblem;
   analysis: CoachAnalysis;
+  language?: Language;
   onProgressChange?: (completedCount: number) => void;
   className?: string;
 }
@@ -31,10 +31,12 @@ export interface GuidedWizardProps {
 export const GuidedWizard: React.FC<GuidedWizardProps> = ({
   problem,
   analysis,
+  language = 'hi',
   onProgressChange,
   className = '',
 }) => {
   const shouldReduceMotion = useReducedMotion();
+  const ladderSteps = getLadderSteps(language);
   const [guidedState, setGuidedState] = useState<GuidedWizardState>(getDefaultGuidedState);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isCompletedAll, setIsCompletedAll] = useState<boolean>(false);
@@ -81,7 +83,7 @@ export const GuidedWizard: React.FC<GuidedWizardProps> = ({
   );
 
   const currentStep = guidedState.currentStep || 1;
-  const currentLadderStep = LADDER_STEPS.find((s) => s.step === currentStep) || LADDER_STEPS[0];
+  const currentLadderStep = ladderSteps.find((s) => s.step === currentStep) || ladderSteps[0];
 
   // Step navigation
   const handleSelectStep = (step: number) => {
@@ -227,6 +229,7 @@ export const GuidedWizard: React.FC<GuidedWizardProps> = ({
             <ReflectionCard
               slug={problem.slug}
               defaultPattern={analysis.keywordHits[0]?.technique || ''}
+              language={language}
             />
           </div>
         </motion.div>
@@ -244,6 +247,7 @@ export const GuidedWizard: React.FC<GuidedWizardProps> = ({
               ladderStep={currentLadderStep}
               problem={problem}
               analysis={analysis}
+              language={language}
               notes={guidedState.notesByStep[currentStep] || ''}
               onNotesChange={handleNotesChange}
               isUnderstood={!!guidedState.isUnderstoodByStep[currentStep]}

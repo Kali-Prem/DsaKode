@@ -178,6 +178,7 @@ export interface ProblemRecord {
 }
 
 export interface CoachSettings {
+  language?: 'en' | 'hi'; // default: 'hi' (or 'en')
   themeMode: 'auto' | 'dark' | 'light';
   defaultDockSide: 'left' | 'right';
   hintTimerSeconds: number; // default: 60
@@ -202,6 +203,7 @@ export interface AskCoachContext {
   currentStep: number;
   currentNotes?: string;
   userMessage: string;
+  language?: 'en' | 'hi';
 }
 
 export interface CoachChatMessage {
@@ -225,6 +227,7 @@ export interface CoachStorageState {
   panelWidth?: number;
   panelTop?: number;
   themeMode?: 'auto' | 'dark' | 'light';
+  language?: 'en' | 'hi';
   ladderProgress?: number;
   activeSlug: string | null;
   problemHistory: Record<string, ProblemRecord>;

@@ -23,6 +23,7 @@ export interface StepCardProps {
   ladderStep: ThinkingLadderStep;
   problem: ParsedProblem;
   analysis: CoachAnalysis;
+  language?: 'en' | 'hi';
   notes: string;
   onNotesChange: (notes: string) => void;
   isUnderstood: boolean;
@@ -40,6 +41,7 @@ export const StepCard: React.FC<StepCardProps> = ({
   ladderStep,
   problem,
   analysis,
+  language = 'hi',
   notes,
   onNotesChange,
   isUnderstood,
@@ -78,7 +80,7 @@ export const StepCard: React.FC<StepCardProps> = ({
         </div>
         <div className="space-y-0.5 text-slate-700 dark:text-slate-200 flex-1">
           <strong className="text-indigo-700 dark:text-indigo-400 font-bold block text-xs uppercase tracking-wider">
-            Kya Karna Hai:
+            {language === 'en' ? 'What To Do:' : 'Kya Karna Hai:'}
           </strong>
           <span className="text-[13px] leading-relaxed text-slate-700 dark:text-slate-200 block">
             {ladderStep.action}
@@ -96,7 +98,7 @@ export const StepCard: React.FC<StepCardProps> = ({
       </div>
 
       {/* Auto-filled Problem-Specific Context */}
-      <StepContextView step={ladderStep.step} problem={problem} analysis={analysis} />
+      <StepContextView step={ladderStep.step} problem={problem} analysis={analysis} language={language} />
 
       {/* Notes Textarea (User writes response in own words) */}
       <div className="space-y-2 p-3.5 rounded-xl bg-slate-50/80 dark:bg-slate-950/60 border border-slate-200 dark:border-white/[0.08]">
@@ -106,7 +108,7 @@ export const StepCard: React.FC<StepCardProps> = ({
             className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5 text-xs"
           >
             <Edit3 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-            Tumhare Words me Jawab / Notes (Optional)
+            {language === 'en' ? 'Notes / Thoughts in Your Own Words (Optional)' : 'Tumhare Words me Jawab / Notes (Optional)'}
           </label>
           <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
             {notes?.length || 0} chars
@@ -118,7 +120,11 @@ export const StepCard: React.FC<StepCardProps> = ({
           rows={3}
           value={notes || ''}
           onChange={(e) => onNotesChange(e.target.value)}
-          placeholder="Apne words me likho (jaise: 'Array unsorted hai par target sum nikalna hai, to brute force nested loop hoga...')"
+          placeholder={
+            language === 'en'
+              ? "Write in your own words (e.g.: 'Array is unsorted but we need a target sum, so brute force would be nested loops...')"
+              : "Apne words me likho (jaise: 'Array unsorted hai par target sum nikalna hai, to brute force nested loop hoga...')"
+          }
           className="w-full text-sm p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/[0.08] text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans leading-relaxed resize-none transition-colors"
         />
 
@@ -128,7 +134,7 @@ export const StepCard: React.FC<StepCardProps> = ({
             id={`step-understood-${ladderStep.step}`}
             checked={isUnderstood}
             onChange={(checked) => onUnderstoodChange(checked)}
-            label="Maine ye step samajh liya / complete kar liya"
+            label={language === 'en' ? 'I have understood / completed this step' : 'Maine ye step samajh liya / complete kar liya'}
           />
         </div>
       </div>
@@ -139,6 +145,7 @@ export const StepCard: React.FC<StepCardProps> = ({
         unlockedLevel={unlockedHintLevel}
         onUnlockLevel={onUnlockHintLevel}
         analysis={analysis}
+        language={language}
       />
 
       {/* Navigation Buttons Row */}
