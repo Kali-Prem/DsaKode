@@ -1,8 +1,8 @@
 <div align="center">
 
-  <img src="public/icons/icon-128.png" width="108" height="108" alt="DsaKode Logo" />
+  <img src="public/icons/icon-512.png?raw=true" width="112" height="112" alt="DsaKode Logo" />
 
-  # 🧠 DsaKode
+  # DsaKode
   ### **Think Logic. Crack Code.**
   
   **The Socratic LeetCode intuition coach Chrome Extension (Manifest V3)**  
@@ -49,7 +49,7 @@ When preparing for Data Structures & Algorithms interviews on LeetCode, develope
 > **Real algorithmic mastery is not about memorizing code templates — it is about recognizing waste and choosing the right tool.**  
 > **DsaKode** embeds directly inside LeetCode as an unobtrusive, zero-layout-shift companion that mentors you step-by-step through Socratic inquiry. It enforces a strict **Zero-Code Guarantee**: you do the thinking, you write the code.
 
-| Capability | Standard LeetCode | Generative AI Copilots | 🧠 DsaKode |
+| Capability | Standard LeetCode | Generative AI Copilots | DsaKode |
 | :--- | :---: | :---: | :---: |
 | **Direct Code Spoilers** | None | ❌ Spits full solution code | 🛡️ **Zero Code Guarantee (Never spoils)** |
 | **Socratic Thinking Ladder** | ❌ None | ❌ Inconsistent / hallucinated | ✅ **Structured 8-step playbook stepper** |
