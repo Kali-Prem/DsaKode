@@ -13,6 +13,7 @@ import {
   Layers,
   Bot,
   Languages,
+  GraduationCap,
 } from 'lucide-react';
 import { Badge, BadgeVariant } from './components/Badge';
 import { Button } from './components/Button';
@@ -22,6 +23,7 @@ import { ProblemDifficulty, ParsedProblem, CoachAnalysis } from '../core/types';
 import { parseProblemPage } from '../core/parser';
 import { analyze } from '../core/engine';
 import { GuidedWizard } from './guided/GuidedWizard';
+import { TeacherWalkthroughView } from './guided/TeacherWalkthroughView';
 import { InsightsView } from './guided/InsightsView';
 import { AskCoachView } from './guided/AskCoachView';
 
@@ -71,7 +73,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
   onProgressChange,
 }) => {
   const shouldReduceMotion = useReducedMotion();
-  const [activeTab, setActiveTab] = useState<'guided' | 'insights' | 'ask-coach'>('guided');
+  const [activeTab, setActiveTab] = useState<'guided' | 'teacher' | 'insights' | 'ask-coach'>('guided');
   const [panelWidth, setPanelWidth] = useState(width);
   const [minimized, setMinimized] = useState(isMinimized);
   const [isResizing, setIsResizing] = useState(false);
@@ -370,6 +372,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                     onChange={(id) => setActiveTab(id as any)}
                     tabs={[
                       { id: 'guided', label: language === 'en' ? 'Ladder' : 'Guided Ladder', icon: <Layers className="w-3.5 h-3.5" /> },
+                      { id: 'teacher', label: 'Teacher Flow', icon: <GraduationCap className="w-3.5 h-3.5" /> },
                       { id: 'insights', label: 'Insights', icon: <Sparkles className="w-3.5 h-3.5" /> },
                       { id: 'ask-coach', label: 'Ask Coach', icon: <Bot className="w-3.5 h-3.5" />, badge: 'AI' },
                     ]}
@@ -385,6 +388,14 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                        language={language}
                        onLanguageChange={onLanguageChange}
                        onProgressChange={onProgressChange}
+                    />
+                  )}
+
+                  {activeTab === 'teacher' && (
+                    <TeacherWalkthroughView
+                      problem={effectiveProblem}
+                      analysis={effectiveAnalysis}
+                      language={language}
                     />
                   )}
 

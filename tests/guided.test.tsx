@@ -7,6 +7,7 @@ import { StepCard } from '../src/ui/guided/StepCard';
 import { StepContextView } from '../src/ui/guided/StepContextView';
 import { SocraticHintDrawer } from '../src/ui/guided/SocraticHintDrawer';
 import { GuidedWizard } from '../src/ui/guided/GuidedWizard';
+import { TeacherWalkthroughView } from '../src/ui/guided/TeacherWalkthroughView';
 import { ParsedProblem } from '../src/core/types';
 import { analyze } from '../src/core/engine';
 import rawLadder from '../src/data/thinkingLadder.json';
@@ -285,6 +286,38 @@ describe('Guided Mode - GuidedWizard Full Workflow', () => {
     await waitFor(() => {
       expect(getByText('Step 2 of 8')).toBeDefined();
       expect(getByText('Manual')).toBeDefined();
+    });
+  });
+});
+
+describe('TeacherWalkthroughView Component', () => {
+  it('renders Chapter 1 by default and supports stepping to next chapters', async () => {
+    const { getByText, findByText } = render(
+      <TeacherWalkthroughView
+        problem={mockTwoSumProblem}
+        analysis={mockAnalysis}
+        language="hi"
+      />
+    );
+
+    // Header and Chapter 1 visible
+    expect(getByText(/Teacher Flow: Step-by-Step Breakdown/i)).toBeDefined();
+    expect(getByText(/1. Question Dekhte Hi Input & Output Par Dhyan/i)).toBeDefined();
+    expect(getByText(/nums = \[2,7,11,15\], target = 9/i)).toBeDefined();
+
+    // Advance to Chapter 2
+    const nextBtn = getByText('Agla Step');
+    fireEvent.click(nextBtn);
+    const ch2Title = await findByText(/2. Test Case Ko Pen-Paper Par Khud Solve Kiya/i);
+    expect(ch2Title).toBeDefined();
+
+    // Toggle to Full Story view
+    const fullStoryBtn = getByText(/Pura Ek Saath/i);
+    fireEvent.click(fullStoryBtn);
+    await waitFor(() => {
+      expect(getByText(/3. Constraints Se Time & Space Ka Budget Nikala/i)).toBeDefined();
+      expect(getByText(/4. Brute Force Me Faltu Kaam/i)).toBeDefined();
+      expect(getByText(/7. Interviewer Kahan Fasa Sakta Hai/i)).toBeDefined();
     });
   });
 });

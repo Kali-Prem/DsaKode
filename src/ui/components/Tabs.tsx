@@ -51,7 +51,8 @@ export const Tabs: React.FC<TabsProps> = ({
             tabIndex={isActive ? 0 : -1}
             onClick={() => onChange(tab.id)}
             onKeyDown={(e) => handleKeyDown(e, index)}
-            className={`relative flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors select-none z-10 flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+            title={tab.label}
+            className={`relative flex items-center justify-center gap-1 px-1.5 sm:px-2.5 py-1.5 text-xs font-medium rounded-lg transition-colors select-none z-10 flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
               isActive
                 ? 'text-slate-900 dark:text-white font-semibold'
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
@@ -65,10 +66,10 @@ export const Tabs: React.FC<TabsProps> = ({
               />
             )}
             {tab.icon && <span className="inline-flex shrink-0">{tab.icon}</span>}
-            <span className="truncate">{tab.label}</span>
+            <span className="truncate whitespace-nowrap">{tab.label}</span>
             {tab.badge !== undefined && (
               <span
-                className={`text-xs px-2 py-0.5 rounded-full font-mono transition-colors ${
+                className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono transition-colors ${
                   isActive
                     ? 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 font-semibold'
                     : 'bg-slate-200/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400'
